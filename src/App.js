@@ -1,21 +1,44 @@
-import React from "react";
-import RightDiv from "./Components/RightDiv";
-import LeftDiv from "./Components/LeftDiv";
-import ParticleComponent from "./Components/Particle";
-import { Toaster } from "react-hot-toast";
-import './media-queries.css'
+import React, { useRef } from 'react';
+import './Utils/customeStyles.css';
+import NavBar from './Components/NavBar';
+import { Toaster } from 'react-hot-toast';
+import {
+    HomeContainer,
+    SkillsComponent,
+    PortfolioContainer,
+    ContactContainer,
+} from './Components/pageComponent';
+import Zoom from 'react-reveal/Zoom';
 
 function App() {
-  return (
-    <div className='Body h-screen px-40'>
-      <ParticleComponent className="backGround absolute top-0 left-0 w-full h-full z-2" />
-      <div className='Body2 flex flex-row mx-0 h-full bg-[#00342d]'>
-          <RightDiv/>
-          <LeftDiv/>
-          <Toaster position="top-right" />
-      </div>
-    </div>
-  );
+    const homeRef = useRef(null);
+    const skillsRef = useRef(null);
+    const portfolioRef = useRef(null);
+    const contactRef = useRef(null);
+
+    const handleScrollToView = (sectionId) => {
+        if (sectionId === 'Home') {
+            homeRef.current.scrollIntoView({ behavior: 'smooth' });
+        } else if (sectionId === 'Skills') {
+            skillsRef.current.scrollIntoView({ behavior: 'smooth' });
+        } else if (sectionId === 'Portfolio') {
+            portfolioRef.current.scrollIntoView({ behavior: 'smooth' });
+        } else if (sectionId === 'Contact') {
+            contactRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    return (
+        <div className="body">
+            <NavBar handleScrollToView={handleScrollToView} />
+            <HomeContainer ref={homeRef} />
+            <SkillsComponent ref={skillsRef} />
+            <PortfolioContainer ref={portfolioRef} />
+            <ContactContainer ref={contactRef} />
+            <Toaster position="top-center" />
+        </div>
+        
+    );
 }
 
 export default App;

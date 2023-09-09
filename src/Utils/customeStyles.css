@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Tinos&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora&family=Tinos&di');
+
+.body {
+    overflow: hidden;
+}
+.logo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 30px;
+}
+
+.navList {
+    padding: 1rem;
+    border-bottom: 1;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    color: #ffffff;
+}
+
+.navList:hover {
+    border-bottom-width: 3px;
+    border-color: #b3ccff;
+}
+
+.Container {
+    height: 100vh;
+    background-color: blue;
+}
+
+
