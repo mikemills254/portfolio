@@ -1,14 +1,8 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  // ...
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
-    // ...
-  ],
-  corePlugins: {
-
-    'form': ['@layer utilities'],
-    'prose': ['@layer utilities'],
+  content: ["./src/**/*.{html,js,jsx,ts}"],
+  theme: {
+    extend: {},
   },
+  plugins: [],
 }

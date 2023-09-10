@@ -9,7 +9,7 @@ import python from '../Assets/images/py.png'
 import javascript from '../Assets/images/js.png'
 import html from '../Assets/images/html.png'
 import CSS from '../Assets/images/css.png'
-import { Wrapper, Cards } from '../Utils/StyledComponents'
+import { Wrapper } from '../Utils/StyledComponents'
 import CardsComponent from './CardsComponent'
 import Rate from '../Assets/images/Rate.png'
 import android from '../Assets/images/android.png'
@@ -26,11 +26,8 @@ import { Bars } from 'react-loader-spinner'
 import NewsApp from '../Assets/images/NewsApp.png'
 import WebDev from '../Assets/images/webDev.png'
 import ApiDev from '../Assets/images/apiDev.png'
-import Zoom from 'react-reveal/Zoom'
 
 export const HomeContainer = forwardRef(({ sectionId }, ref) => {
-    const iconsArray = [nodeIcon, expoIcon, figmaIcon, reactIcon];
-
     return (
         <Wrapper className='wrapperContain flex flex-col items-center pt-[7rem] px-[10rem] bg-[#c0cfd0]' id={sectionId} ref={ref}>
             <style>
@@ -71,14 +68,6 @@ export const HomeContainer = forwardRef(({ sectionId }, ref) => {
 
 
 export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
-    const [ isSkillName, setSkillName ] = useState(false)
-    
-    const generateTechLink = (techLink) => {
-        return (
-            <a href={techLink[0]}>Link to a Different Screen</a>
-        );
-    };
-    
     const Services = [
         {
             skillName: "Native App Design",
@@ -110,6 +99,7 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
         { name: "js", image: javascript },
         { name: "html", image: html },
         { name: "css", image: CSS },
+        { name: "python", image: python },
     ]
 
     return (
