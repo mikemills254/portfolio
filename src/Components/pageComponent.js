@@ -45,26 +45,23 @@ export const HomeContainer = forwardRef(({ sectionId }, ref) => {
             <p className='intro text-[3rem] text-center font-bold hover:cursor-pointer text-[#000000] max-w-[60rem]'>
                 A Frontend Developer Using React and React Native JavaScript Frameworks
             </p>
-            <div className="relative w-40 h-40 rounded-full my-2 overflow-hidden">
-                <div className="absolute inset-0 flex justify-center items-center">
-                <img
-                    src={Person}
-                    className="w-full h-full object-cover rounded-full ring-2 ring-[#1a37db] relative z-10"
-                    alt="Person"
-                />
-                </div>
+            <div className="ImgHolder w-40 h-40 rounded-full my-2 overflow-hidden flex justify-center items-center">
+            <img
+                src={Person}
+                className="w-full h-full object-cover rounded-full ring-2 "
+                alt="Person"
+            />
             </div>
-
             <p className='description text-center text-[1rem] max-w-[40rem] mt-5'>
                 Hi, my name is 
                 <h4 className='logo text-[40px] text-red-500 font-extrabold'>Mike Mills,</h4>
                 a passionate software developer who is curious to know what your thoughts are just so I can make them a reality.
             </p>
             <div className='socialIcon p-2 my-2 flex flex-row items-center align-middle w-full justify-center gap-5'>
-                <SocialIcon network="github" url="https://github.com/mikemills254?tab=repositories" />
-                <SocialIcon network="codepen" url="https://codesandbox.io/dashboard/recent?workspace=072dc053-9367-4fff-8ec3-f92ddaa0a0da" />
-                <SocialIcon network="x" url="https://twitter.com/SweetDzaddy?t=tlxqa-fpaIVg_Y8ZMG-0pA&s=09" />
-                <SocialIcon network="linkedin" url="https://twitter.com/SweetDzaddy?t=tlxqa-fpaIVg_Y8ZMG-0pA&s=09" />
+                <SocialIcon network="github" url="https://github.com/mikemills254?tab=repositories" className='socials' />
+                <SocialIcon network="codepen" url="https://codesandbox.io/dashboard/recent?workspace=072dc053-9367-4fff-8ec3-f92ddaa0a0da"  className='socials'/>
+                <SocialIcon network="x" url="https://twitter.com/SweetDzaddy?t=tlxqa-fpaIVg_Y8ZMG-0pA&s=09"  className='socials' />
+                <SocialIcon network="linkedin" url="https://twitter.com/SweetDzaddy?t=tlxqa-fpaIVg_Y8ZMG-0pA&s=09"  className='socials'/>
 
             </div>
         </Wrapper>
@@ -78,16 +75,16 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
     
     const generateTechLink = (techLink) => {
         return (
-            <a href={techLink}>Link to a Different Screen</a>
+            <a href={techLink[0]}>Link to a Different Screen</a>
         );
     };
+    
     const Services = [
         {
             skillName: "Native App Design",
             skillDescription: "I am able to develop native applications using react native and expo",
             skillImage: android,
             tech: ['https://example.com']
-
         },
         {
             skillName: "Web & App Development",
@@ -97,11 +94,12 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
         },
         {
             skillName: "API Design and Development",
-            skillDescription: "At the moment i am developing an auth api that will authenticate a user into a system and controll each session a user is logged in",
+            skillDescription: "At the moment, I am developing an auth API that will authenticate a user into a system and control each session a user is logged in",
             skillImage: ApiDev,
             tech: ['https://example.com']
         },
-    ]
+    ];
+    
 
     const Skills = [
         { name: "ReactJs", image: reactIcon },
@@ -147,7 +145,6 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
                         CardsTitle={service.skillName}
                         CardsDescription={service.skillDescription}
                         cardsImage={service.skillImage}
-                        // tech={generateTechLink(service.tech)}
                     />
                 ))}
             </div>

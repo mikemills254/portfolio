@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&family=Tinos&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora&family=Tinos&di');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora&family=Pacifico&family=Tinos&display=swap');
 
 .body {
     overflow: hidden;
@@ -8,7 +9,13 @@
     font-family: 'Dancing Script', cursive;
     font-size: 30px;
 }
-
+.hiretext{
+    font-family: 'Pacifico', cursive;
+    font-weight: bold;
+}
+.socials {
+    z-index: 0;
+}
 .navList {
     padding: 1rem;
     border-bottom: 1;

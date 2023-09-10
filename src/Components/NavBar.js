@@ -9,7 +9,7 @@ function NavBar({ handleScrollToView }) {
     };
 
     return (
-        <nav className={`navContainer justify-evenly w-full flex items-center fixed z-9999 top-0 bg-[#2e413f] ${isNavOpen ? 'displayNav' : ''}`}>
+        <nav className={`navContainer opacity-100 justify-evenly w-full flex items-center fixed z-9999 top-0 bg-[#2e413f] ${isNavOpen ? 'displayNav' : ''}`}>
             <style>
                 {`
                     @media (max-width: 768px) {
@@ -29,23 +29,29 @@ function NavBar({ handleScrollToView }) {
                             display: ${isNavOpen ? 'block' : 'none'};
                         }
                         .hireBtn {
-                            display: none;
+                            display: block;
+                            width: 10rem;
+                            margin-left: 0
                         }
                         .navContainer {
                             display: flex;
                             flex-direction: row;
                             justify-content: space-between;
                             padding: 10px;
+                            backgroundColor: red
                         }
                         .displayNav {
                             display: flex;
                             flex-direction: column;
+                        }.
+                        navList {
+                            width: 100%
                         }
                     }
                 `}
             </style>
             <h1 className='logo'>mikeDev</h1>
-            <ul className='ulContainer flex flex-row gap-5 overflow-x-auto' id='nav'>
+            <ul className='ulContainer flex flex-row gap-5 overflow-x-auto items-center ' id='nav'>
                 <li
                     onClick={() => {handleScrollToView('Home'); setIsNavOpen(false)}}
                     className='navList'
@@ -70,11 +76,12 @@ function NavBar({ handleScrollToView }) {
                 >
                     Contact
                 </li>
+                <div role='button' className='hireBtn  p-1.5 rounded ml-[3rem] flex flex-col items-center' onClick={() => {handleScrollToView('Contact'); setIsNavOpen(false)}}>
+                    <h2 className='hiretext text-base text-[red] font-semibold'>Contact me!</h2>
+                </div>
             </ul>
 
-            <div role='button' className='hireBtn bg-[#557174] p-1.5 rounded'>
-                <h2 className='hireText text-base text-white font-semibold'>Hire me!</h2>
-            </div>
+            
             {isNavOpen ? (
                 <AiOutlineClose
                     className='CloseIcon hidden items-center text-center font-bold'

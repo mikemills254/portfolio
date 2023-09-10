@@ -30,7 +30,7 @@ function App() {
 
     return (
         <div className="body">
-            <NavBar handleScrollToView={handleScrollToView} />
+            <NavBar handleScrollToView={handleScrollToView}/>
             <HomeContainer ref={homeRef} />
             <SkillsComponent ref={skillsRef} />
             <PortfolioContainer ref={portfolioRef} />
