@@ -12,5 +12,17 @@ module.exports = {
       '2xl': '1536px',
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+    // ...
+  ],
+  corePlugins: {
+    // ...
+    // Use @layer utilities or @layer components as needed
+    'form': ['@layer utilities'],
+    'prose': ['@layer utilities'],
+    // ...
+  },
 };
