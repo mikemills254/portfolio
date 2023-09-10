@@ -8,7 +8,6 @@ import {
     PortfolioContainer,
     ContactContainer,
 } from './Components/pageComponent';
-import Zoom from 'react-reveal/Zoom';
 
 function App() {
     const homeRef = useRef(null);
