@@ -13,7 +13,7 @@ import { Wrapper } from '../Utils/StyledComponents'
 import CardsComponent from './CardsComponent'
 import Rate from '../Assets/images/Rate.png'
 import android from '../Assets/images/android.png'
-import Person from '../Assets/images/me-2.png'
+import Person from '../Assets/images/Porfolio.jpg'
 import { SocialIcon } from 'react-social-icons';
 import { useFormik } from 'formik'
 import { toast } from 'react-hot-toast'
