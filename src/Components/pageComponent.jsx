@@ -221,9 +221,9 @@ export const PortfolioContainer = forwardRef(({ sectionId }, ref) => {
 
 export const ContactContainer = forwardRef(({ sectionId }, ref) => {
     const form = useRef();
-    const SERVICE_ID = import.meta.envREACT_APP_SERVICE_ID;
-    const TEMPLATE_ID = import.meta.envREACT_APP_TEMPLATE_ID;
-    const PUBLIC_KEY = import.meta.envREACT_APP_PUBLIC_KEY;
+    const SERVICE_ID = import.meta.env.REACT_APP_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.REACT_APP_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.REACT_APP_PUBLIC_KEY;
     const [ isLoader, setIsLoading ] = useState(false)
 
     const formik = useFormik({
