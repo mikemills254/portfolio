@@ -50,7 +50,7 @@ function CardsComponent({ cardsImage, CardsTitle, CardsDescription, tech, bgColo
             )}
             {linkComponent ? (
                 <div className='checkCode w-full bg-[#5173ff] flex flex-row items-center justify-center my-2 p-2 rounded'>
-                    <a href={linkComponent} className='linkName font-bold text-[#2233b1]'>Check Code</a>
+                    <a href={linkComponent} className='linkName font-bold text-[#ffffff]'>Check Code</a>
                 </div>
             ) : null}
         </Cards>
