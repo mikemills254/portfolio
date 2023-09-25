@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { AiOutlineMenuFold, AiOutlineClose } from 'react-icons/ai';
+import { GoDownload } from 'react-icons/go'
 
 function NavBar({ handleScrollToView }) {
     const [isNavOpen, setIsNavOpen] = useState(false);
@@ -9,12 +10,13 @@ function NavBar({ handleScrollToView }) {
     };
 
     return (
-        <nav className={`navContainer opacity-1 justify-evenly w-full flex items-center fixed z-9999 top-0 bg-[#293836] ${isNavOpen ? 'displayNav' : ''}`}>
+        <nav className={`navContainer justify-evenly p-1 w-full flex items-center fixed z-9999 top-0 bg-[black] ${isNavOpen ? 'displayNav' : ''}`}>
             <style>
                 {`
                     @media (max-width: 768px) {
                         .ulContainer {
                             display: ${isNavOpen ? 'block' : 'none'};
+                            backgroundColor: red;
                         }
                         .MenuIcon, .CloseIcon {
                             display: block;
@@ -29,59 +31,62 @@ function NavBar({ handleScrollToView }) {
                             display: ${isNavOpen ? 'block' : 'none'};
                         }
                         .hireBtn {
-                            display: block;
                             width: 10rem;
-                            margin-left: 0
+                            margin-left: 0;
                         }
                         .navContainer {
                             display: flex;
                             flex-direction: row;
                             justify-content: space-between;
                             padding: 10px;
-                            backgroundColor: red
+                            /* Set the background color to opaque */
+                            background-color: #293836;
                         }
                         .displayNav {
                             display: flex;
                             flex-direction: column;
-                        }.
-                        navList {
-                            width: 100%
+                        }
+                        .navList {
+                            width: 100%;
                         }
                     }
                 `}
             </style>
             <h1 className='logo'>mikeDev</h1>
-            <ul className='ulContainer flex flex-row gap-5 overflow-x-auto items-center ' id='nav'>
+            <ul className='ulContainer flex flex-row gap-5 overflow-x-auto items-center justify-center ' id='nav'>
                 <li
-                    onClick={() => {handleScrollToView('Home'); setIsNavOpen(false)}}
+                    onClick={() => { handleScrollToView('Home'); setIsNavOpen(false) }}
                     className='navList'
                 >
-                    Home
+                    <span>01. </span>Home
                 </li>
                 <li
-                    onClick={() => {handleScrollToView('Skills'); setIsNavOpen(false)}}
+                    onClick={() => { handleScrollToView('Skills'); setIsNavOpen(false) }}
                     className='navList'
                 >
-                    Skills
+                    <span>02. </span>Skills
                 </li>
                 <li
-                    onClick={() => {handleScrollToView('Portfolio'); setIsNavOpen(false)}}
+                    onClick={() => { handleScrollToView('Portfolio'); setIsNavOpen(false) }}
                     className='navList'
                 >
-                    Portfolio
+                    <span>03. </span>Portfolio
                 </li>
                 <li
-                    onClick={() => {handleScrollToView('Contact'); setIsNavOpen(false)}}
+                    onClick={() => { handleScrollToView('Contact'); setIsNavOpen(false) }}
                     className='navList'
                 >
-                    Contact
+                    <span>04. </span>Contact
                 </li>
-                <div role='button' className='hireBtn  p-1.5 rounded ml-[3rem] flex flex-col items-center' onClick={() => {handleScrollToView('Contact'); setIsNavOpen(false)}}>
-                    <h2 className='hiretext text-base text-[red] font-semibold'>Contact me!</h2>
+                <div role='button' className='hireBtn gap-2 p-1.5 rounded ml-[3rem] flex flex-row items-center' onClick={() => { handleScrollToView('Contact'); setIsNavOpen(false) }}>
+                    <GoDownload 
+                        color='white'
+                        size={20}
+                    />
+                    <h2 className='hire text-base text-[#ffffff] font-semibold'>Resume</h2>
                 </div>
             </ul>
 
-            
             {isNavOpen ? (
                 <AiOutlineClose
                     className='CloseIcon hidden items-center text-center font-bold'
@@ -99,4 +104,4 @@ function NavBar({ handleScrollToView }) {
     );
 }
 
-export default NavBar
+export default NavBar;

@@ -8,10 +8,18 @@
 .logo {
     font-family: 'Dancing Script', cursive;
     font-size: 30px;
+    color: #f5f8f7;
 }
-.hiretext{
-    font-family: 'Pacifico', cursive;
-    font-weight: bold;
+.logo1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 30px;
+}
+.hireBtn{
+    border: 1px solid white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .socials {
     z-index: 0;
@@ -21,7 +29,12 @@
     border-bottom: 1;
     cursor: pointer;
     font-family: 'Lora', serif;
-    color: #ffffff;
+    color: #e7e7e7;
+}
+
+.navList span {
+    font-size: 10px;
+    color: #6b8b8c;
 }
 
 .navList:hover {

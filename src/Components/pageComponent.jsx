@@ -13,7 +13,7 @@ import { Wrapper } from '../Utils/StyledComponents'
 import CardsComponent from './CardsComponent'
 import Rate from '../Assets/images/Rate.png'
 import android from '../Assets/images/android.png'
-import Person from '../Assets/images/Porfolio.jpg'
+import Profile from '../Assets/images/Portfolio.png'
 import { SocialIcon } from 'react-social-icons';
 import { useFormik } from 'formik'
 import { toast } from 'react-hot-toast'
@@ -43,18 +43,20 @@ export const HomeContainer = forwardRef(({ sectionId }, ref) => {
             <p className='intro text-[3rem] text-center font-bold hover:cursor-pointer text-[#000000] max-w-[60rem]'>
                 A Frontend Developer Using React and React Native JavaScript Frameworks
             </p>
-            <div className="ImgHolder w-40 h-40 rounded-full my-2 overflow-hidden flex justify-center items-center">
-            <img
-                src={Person}
-                className="w-full h-full object-cover rounded-full ring-2 "
-                alt="Person"
-            />
+            <div className="w-[10rem] h-[10rem] rounded-[20rem] flex items-center border-none justify-center overflow-hidden">
+                <img
+                    src={Profile}
+                    className='profileImg w-[100%] h-[100%] object-cover border-none'
+                    alt="Person"
+                />
             </div>
             <p className='description text-center text-[1rem] max-w-[40rem] mt-5'>
-                Hi, my name is <br/>
-                <small className='logo text-[40px] text-red-500 font-extrabold'>Mike Mills,</small> <br/>
-                a passionate software developer who is curious to know what your thoughts are just so I can make them a reality.
+                Hello, I'm <br/>
+                <small className='logo1 text-[40px] text-red-500 font-extrabold'>Mike Mills,</small> <br/>
+                    an enthusiastic software developer, eager to turn your ideas into reality.
+                    Let's transform your vision into code and innovation! Let's collaborate to bring your vision to life through innovative coding solutions.
             </p>
+
             <div className='socialIcon p-2 my-2 flex flex-row items-center align-middle w-full justify-center gap-5'>
                 <SocialIcon network="github" url="https://github.com/mikemills254?tab=repositories" className='socials' style={{ fontSize: 10}}/>
                 <SocialIcon network="codepen" url="https://codesandbox.io/dashboard/recent?workspace=072dc053-9367-4fff-8ec3-f92ddaa0a0da"  className='socials'/>
