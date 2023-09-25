@@ -281,14 +281,14 @@ export const ContactContainer = forwardRef(({ sectionId }, ref) => {
                     },
                     (error) => {
                         setIsLoading(false);
-                        toast.error(error.text); // Display the error message as a string
+                        toast.error(error.text);
                     }
                 );
         },
         
         });
     return (
-        <Wrapper className='divs h-[100%] items-center flex flex-row justify-around bg-[#7a86bd]' id={sectionId} ref={ref}>
+        <Wrapper className='divs h-[100%] items-center flex flex-row justify-around bg-[#edf0f1]' id={sectionId} ref={ref}>
             <style>
                 {`
                 @media (max-width: 768px) and (max-width: 1024px) {
@@ -314,16 +314,16 @@ export const ContactContainer = forwardRef(({ sectionId }, ref) => {
                 }
                 `}
             </style>
-            <div className='contactIntro my-5 border-l h-[100%] p-10'>
+            <div className='contactIntro my-5 border-l border-[#429779] h-[100%] p-10'>
                 <h2 className='text font-bold text-[25px] text-[#51f7cb]'>Let's Get In Touch</h2>
-                <small className='text-[#c8ffee]'>Feel free to get in touch with me. Let's create your dream and also be buddies!</small>
+                <small className='text-[#0a1813]'>Feel free to get in touch with me. Let's create your dream and also be buddies!</small>
             <div className='footer flex flex-col gap-2 h-[100%]'>
                 <div className='footer3 flex flex-row gap-1 items-center '>
-                    <IoLocationOutline color='#c8ffee'/>
+                    <IoLocationOutline color='#0a1813'/>
                     <h6>Nairobi, Kenya</h6>
                 </div>
                 <div className='footer3 flex flex-row gap-1 items-center '>
-                    <BsPhone color='#c8ffee'/>
+                    <BsPhone color='#0a1813'/>
                     <h6>+254 701 233 944</h6>
                 </div>
                 <div className='footer3 flex flex-row gap-1 items-center '>
@@ -331,7 +331,7 @@ export const ContactContainer = forwardRef(({ sectionId }, ref) => {
                 </div>
             </div>
             </div>
-            <form onSubmit={formik.handleSubmit} ref={form} className='form border-l p-10 items-center flex flex-col gap-4 w-1/2'>
+            <form onSubmit={formik.handleSubmit} ref={form} className='form border-l border-[#429779] p-10 items-center flex flex-col gap-4 w-1/2'>
                 <input
                     type='text'
                     placeholder='Your Name'

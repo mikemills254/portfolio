@@ -11,8 +11,8 @@ function NavBar({ handleScrollToView }) {
     };
     const handleDownloadClick = () => {
         const link = document.createElement('a');
-        link.href = Resume; // Use the imported Resume variable
-        link.download = 'MIKE MILLS.pdf'; // Set the desired file name
+        link.href = Resume;
+        link.download = 'MIKE MILLS.pdf';
         link.style.display = 'none';
     
         document.body.appendChild(link);
