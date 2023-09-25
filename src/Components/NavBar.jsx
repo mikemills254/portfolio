@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineMenuFold, AiOutlineClose } from 'react-icons/ai';
 import { GoDownload } from 'react-icons/go'
+import Resume from '../Assets/MIKE MILLS.pdf'
 
 function NavBar({ handleScrollToView }) {
     const [isNavOpen, setIsNavOpen] = useState(false);
@@ -8,6 +9,18 @@ function NavBar({ handleScrollToView }) {
     const handleToggleNavMenu = () => {
         setIsNavOpen(!isNavOpen);
     };
+    const handleDownloadClick = () => {
+        const link = document.createElement('a');
+        link.href = Resume; // Use the imported Resume variable
+        link.download = 'MIKE MILLS.pdf'; // Set the desired file name
+        link.style.display = 'none';
+    
+        document.body.appendChild(link);
+        link.click();
+    
+        document.body.removeChild(link);
+    };
+    
 
     return (
         <nav className={`navContainer justify-evenly p-1 w-full flex items-center fixed z-9999 top-0 bg-[black] ${isNavOpen ? 'displayNav' : ''}`}>
@@ -78,7 +91,7 @@ function NavBar({ handleScrollToView }) {
                 >
                     <span>04. </span>Contact
                 </li>
-                <div role='button' className='hireBtn gap-2 p-1.5 rounded ml-[3rem] flex flex-row items-center' onClick={() => { handleScrollToView('Contact'); setIsNavOpen(false) }}>
+                <div role='button' className='hireBtn gap-2 p-1.5 rounded ml-[3rem] flex flex-row items-center' onClick={() => handleDownloadClick()}>
                     <GoDownload 
                         color='white'
                         size={20}
