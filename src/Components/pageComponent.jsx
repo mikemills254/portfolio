@@ -109,61 +109,64 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
     ]
 
     return (
-        <Wrapper id={sectionId} className='mainContainerSkills flex flex-col align-middle items-center' ref={ref}>
-            <style>
-                {`
-                    @media (max-width: 768px) {
-                        .intro {
-                            font-size: 2rem;
-                        }
-                        .servicesContainer {
-                            display : flex;
-                            flex-direction : column;
-                        }
-                        .img {
-                            width: 30px;
-                            height: 30px 
-                        }
-                        .skillContainer {
-                            display: flex; 
-                            flex-wrap: wrap; 
-                            max-width: 100px; 
-                        }
-
-                    }
-                `}
-            </style>
-            <h1 className='font-bold text-[2rem] text-[#161d55] underline'>Skills and Services</h1>
-            <div className='serv&skills w-full h-[100vh] flex flex-row justify-between p-2'>
-                <div className='sillsContainer h-[100%] w-[40%]'>
-                    <div className='skillsContainer flex flex-row flex-wrap w-full flex-grow p-2 gap-5'>
-                    {Skills.map((skill) => (
-                        <div key={skill.name} className='skillContainer w-[5rem] p-2 rounded-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
-                            <div className='skillImage h-[80%] flex flex-col items-center justify-center'>
-                                <img src={skill.image} width="100%" height="100%" alt={skill.name} className='skillimg object-cover xl:bg-transparent' />
-                            </div>
-                            <h1 className='skillname text-center'>{skill.name}</h1>
-                        </div>
-                    ))}
+<Wrapper id={sectionId} className='mainContainerSkills flex flex-col align-middle items-center' ref={ref}>
+    <style>
+        {`
+            @media (max-width: 768px) {
+                .intro {
+                    font-size: 2rem;
+                }
+                .serv-and-skills { /* Change & to 'and' for valid class name */
+                    display: block; /* Use 'block' to stack elements vertically */
+                }
+                .img {
+                    width: 30px;
+                    height: 30px;
+                }
+                .skillsContainer {
+                    width: 100%;
+                    height: 25%;
+                    flex-wrap: wrap;
+                    margin-bottom: 10px
+                }
+                .skills {
+                    height: 100%
+                }
+                Containerskill {
+                    background-color: green
+                }
+            }
+        `}
+    </style>
+    <h1 className='font-bold text-[2rem] text-[#161d55] underline'>Skills and Services</h1>
+    <div className='serv-and-skills w-full h-[100vh] flex flex-row justify-between p-2'>
+        <div className='skillsContainer h-[100%] w-[40%]'>
+            <div className='skills flex flex-row flex-wrap w-full flex-grow p-2 gap-5'>
+            {Skills.map((skill) => (
+                <div key={skill.name} className='Containerskill w-[5rem] p-2 rounded-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
+                    <div className='skillImage h-[80%] flex flex-col items-center justify-center'>
+                        <img src={skill.image} width="100%" height="100%" alt={skill.name} className='skillimg object-cover xl:bg-transparent' />
                     </div>
-                    <div>
-                        <h2>div two</h2>
-                    </div>
+                    <h1 className='skillname text-center'>{skill.name}</h1>
                 </div>
-                <div className='serviceContainer h-[100%] w-[60%] flex p-2 flex-row flex-wrap gap-y-4 pl-10'>
-                    {Services.map((service) => (
-                        <div key={service.skillName} className='servicesContainer w-[17rem] cursor-pointer shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-2 mr-7'>
-                            <img
-                                src={service.skillImage}
-                                className='img w-[5rem] mb-5 shadow-2xl p-2 rounded-md'
-                            />
-                            <h1 className='title font-bold'>{service.skillName}</h1>
-                            <small>{service.skillDescription}</small>
-                        </div>
-                    ))}
-                </div>
+            ))}
             </div>
-        </Wrapper>
+        </div>
+        <div className='serviceContainer h-[100%] w-[60%] flex p-2 flex-row flex-wrap gap-y-4 pl-10'>
+            {Services.map((service) => (
+                <div key={service.skillName} className='servicesContainer w-[17rem] cursor-pointer shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-2 mr-7'>
+                    <img
+                        src={service.skillImage}
+                        className='img w-[5rem] mb-5 shadow-2xl p-2 rounded-md'
+                    />
+                    <h1 className='title font-bold'>{service.skillName}</h1>
+                    <small>{service.skillDescription}</small>
+                </div>
+            ))}
+        </div>
+    </div>
+</Wrapper>
+
     )
 });
 
