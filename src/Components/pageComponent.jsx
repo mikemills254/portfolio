@@ -209,7 +209,7 @@ export const PortfolioContainer = forwardRef(({ sectionId }, ref) => {
         },
     ]
     return(
-        <Wrapper className='Container p-16 flex flex-col items-center justify-center bg-[red] h-[100%]' id={sectionId} ref={ref} style={{backgroundColor: '#b3ccff'}}>
+        <Wrapper className='Container p-16 flex flex-col items-center justify-center bg-[red] h-[100%]' id={sectionId} ref={ref} style={{backgroundColor: '#d6e0e1'}}>
             <style>
                 {`
                 @media (max-width: 768px) {
@@ -237,7 +237,7 @@ export const PortfolioContainer = forwardRef(({ sectionId }, ref) => {
                         cardsImage={project.image}
                         CardsDescription={project.description}
                         tech={project.tech}
-                        bgColor="#bdd6ff"
+                        bgColor="#edf0f1"
                         linkComponent={project.link}
                     />
                 ))}
@@ -248,10 +248,11 @@ export const PortfolioContainer = forwardRef(({ sectionId }, ref) => {
 
 export const ContactContainer = forwardRef(({ sectionId }, ref) => {
     const form = useRef();
-    const SERVICE_ID = import.meta.env.REACT_APP_SERVICE_ID;
-    const TEMPLATE_ID = import.meta.env.REACT_APP_TEMPLATE_ID;
-    const PUBLIC_KEY = import.meta.env.REACT_APP_PUBLIC_KEY;
+    const SERVICE_ID = import.meta.env.VITE_REACT_APP_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.VITE_REACT_APP_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.VITE_REACT_APP_PUBLIC_KEY;
     const [ isLoader, setIsLoading ] = useState(false)
+
 
     const formik = useFormik({
         initialValues: {
@@ -269,21 +270,25 @@ export const ContactContainer = forwardRef(({ sectionId }, ref) => {
             message: Yup.string().required('Required'),
         }),
         onSubmit: (values, { resetForm }) => {
-            setIsLoading(true)
+            setIsLoading(true);
             emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
-                .then(() => {
-                        setIsLoading(false)
+                .then(
+                    () => {
+                        setIsLoading(false);
                         toast.success('Successfully sent');
-                        console.log(values)
+                        console.log(values);
                         resetForm();
-                    },(error) => {
-                        toast.error(error);
+                    },
+                    (error) => {
+                        setIsLoading(false);
+                        toast.error(error.text); // Display the error message as a string
                     }
                 );
-            },
+        },
+        
         });
     return (
-        <Wrapper className='divs h-[100%] items-center flex flex-row justify-around bg-[#5676ff]' id={sectionId} ref={ref}>
+        <Wrapper className='divs h-[100%] items-center flex flex-row justify-around bg-[#7a86bd]' id={sectionId} ref={ref}>
             <style>
                 {`
                 @media (max-width: 768px) and (max-width: 1024px) {

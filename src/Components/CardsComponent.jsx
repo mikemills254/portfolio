@@ -49,8 +49,8 @@ function CardsComponent({ cardsImage, CardsTitle, CardsDescription, tech, bgColo
                 </div>
             )}
             {linkComponent ? (
-                <div className='checkCode w-full bg-[#5173ff] flex flex-row items-center justify-center my-2 p-2 rounded'>
-                    <a href={linkComponent} className='linkName font-bold text-[#ffffff]'>Check Code</a>
+                <div className='checkCode w-full bg-[#c0cfd0] flex flex-row items-center justify-center my-2 p-2 rounded'>
+                    <a href={linkComponent} className='linkName font-semibold text-[#242b2d]'>Check Code</a>
                 </div>
             ) : null}
         </Cards>
