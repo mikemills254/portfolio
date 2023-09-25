@@ -27,6 +27,8 @@ import NewsApp from '../Assets/images/NewsApp.png'
 import WebDev from '../Assets/images/webDev.png'
 import ApiDev from '../Assets/images/apiDev.png'
 import fileConverter from '../Assets/images/File Converter.png'
+import Firebase from '../Assets/images/Firebase.png'
+import Mongodb from '../Assets/images/MongoDB-Logo.png'
 
 export const HomeContainer = forwardRef(({ sectionId }, ref) => {
     return (
@@ -74,19 +76,19 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
     const Services = [
         {
             skillName: "Native App Design",
-            skillDescription: "I am able to develop native applications using react native and expo",
+            skillDescription: "I specialize in developing native apps with React Native and Expo, utilizing Redux Toolkit for efficient state management and Firebase for authentication and backend services.",
             skillImage: android,
             tech: ['https://example.com']
         },
         {
             skillName: "Web & App Development",
-            skillDescription: "Design websites and android application ",
+            skillDescription: "I excel in creating responsive and visually appealing websites using React.js. Leveraging libraries like React Router for seamless navigation, Styled-components for elegant styling, and Axios for efficient data fetching, I deliver engaging web experiences.",
             skillImage: WebDev,
             tech: ['https://example.com']
         },
         {
             skillName: "API Design and Development",
-            skillDescription: "At the moment, I am developing an auth API that will authenticate a user into a system and control each session a user is logged in",
+            skillDescription: "I specialize in REST API development within the MERN stack, employing an array of powerful libraries and tools, including Axios, Mongoose, Passport.js, and more. With a focus on security, efficiency, and scalability, I create robust backends for modern web applications.",
             skillImage: ApiDev,
             tech: ['https://example.com']
         },
@@ -95,14 +97,15 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
 
     const Skills = [
         { name: "ReactJs", image: reactIcon },
-        { name: "Figma", image: figmaIcon },
         { name: "Expo", image: expoIcon },
-        { name: "Node", image: nodeIcon },
-        { name: "tailwind", image: tailwind },
-        { name: "js", image: javascript },
+        { name: "Node Js", image: nodeIcon },
+        { name: "Tailwind", image: tailwind },
+        { name: "Javascript", image: javascript },
         { name: "html", image: html },
         { name: "css", image: CSS },
         { name: "python", image: python },
+        { name: "Mongodb", image: Mongodb },
+        { name: "Firebase", image: Firebase },
     ]
 
     return (
@@ -131,22 +134,34 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
                 `}
             </style>
             <h1 className='font-bold text-[2rem] text-[#161d55] underline'>Skills and Services</h1>
-            <div className='servicesContainer flex flex-row items-center justify-center w-full h-[100%]'>
-                {Services.map((service, index) => (
-                    <CardsComponent
-                        key={index}
-                        CardsTitle={service.skillName}
-                        CardsDescription={service.skillDescription}
-                        cardsImage={service.skillImage}
-                    />
-                ))}
-            </div>
-            <div className="Skillscontainer items-center justify-evenly flex w-full flex-row mt-10">
-                {Skills.map((skill, index) => (
-                    <div className='skillContainer rounded items-center hover:cursor-pointer ' key={index}>
-                        <img src={skill.image} className='img h-[4rem] w-[4rem] bg-none hover:scale-50' alt={skill.name}/>
+            <div className='serv&skills w-full h-[100vh] flex flex-row justify-between p-2'>
+                <div className='sillsContainer h-[100%] w-[40%]'>
+                    <div className='skillsContainer flex flex-row flex-wrap w-full flex-grow p-2 gap-5'>
+                    {Skills.map((skill) => (
+                        <div key={skill.name} className='skillContainer w-[5rem] p-2 rounded-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
+                            <div className='skillImage h-[80%] flex flex-col items-center justify-center'>
+                                <img src={skill.image} width="100%" height="100%" alt={skill.name} className='skillimg object-cover xl:bg-transparent' />
+                            </div>
+                            <h1 className='skillname text-center'>{skill.name}</h1>
+                        </div>
+                    ))}
                     </div>
-                ))}
+                    <div>
+                        <h2>div two</h2>
+                    </div>
+                </div>
+                <div className='serviceContainer h-[100%] w-[60%] flex p-2 flex-row flex-wrap gap-y-4 pl-10'>
+                    {Services.map((service) => (
+                        <div key={service.skillName} className='servicesContainer w-[17rem] cursor-pointer shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-2 mr-7'>
+                            <img
+                                src={service.skillImage}
+                                className='img w-[5rem] mb-5 shadow-2xl p-2 rounded-md'
+                            />
+                            <h1 className='title font-bold'>{service.skillName}</h1>
+                            <small>{service.skillDescription}</small>
+                        </div>
+                    ))}
+                </div>
             </div>
         </Wrapper>
     )
