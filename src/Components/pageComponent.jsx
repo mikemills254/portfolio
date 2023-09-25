@@ -130,10 +130,17 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
                     margin-bottom: 10px
                 }
                 .skills {
+                    height: 100%;
+                    padding-left: 50px
+                }
+                .serviceContainer {
+                    width: 100%
+                }
+                .serv-and-skills {
                     height: 100%
                 }
-                Containerskill {
-                    background-color: green
+                .imgService {
+                    width: 5rem
                 }
             }
         `}
@@ -157,7 +164,7 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
                 <div key={service.skillName} className='servicesContainer w-[17rem] cursor-pointer shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-2 mr-7'>
                     <img
                         src={service.skillImage}
-                        className='img w-[5rem] mb-5 shadow-2xl p-2 rounded-md'
+                        className='imgService w-[5rem] mb-5 shadow-2xl p-2 rounded-md'
                     />
                     <h1 className='title font-bold'>{service.skillName}</h1>
                     <small>{service.skillDescription}</small>
