@@ -20,7 +20,7 @@ export const Cards = styled.div`
     /* padding: 5px; */
     margin: 1.5rem; 
     width: 20rem;
-    /* height: 25rem; */
+    /* height: 10rem; */
     cursor: pointer;
 
     @media (max-width: 768px) {

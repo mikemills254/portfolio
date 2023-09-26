@@ -152,19 +152,19 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
     <div className='serv-and-skills w-full h-[100vh] flex flex-row justify-between p-2'>
         <div className='skillsContainer h-[100%] w-[40%]'>
             <div className='skills flex flex-row flex-wrap w-full flex-grow p-2 gap-5'>
-            {Skills.map((skill) => (
-                <div key={skill.name} className='Containerskill w-[5rem] p-2 rounded-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
-                    <div className='skillImage h-[80%] flex flex-col items-center justify-center'>
-                        <img src={skill.image} width="100%" height="100%" alt={skill.name} className='skillimg object-cover xl:bg-transparent' />
+                {Skills.map((skill) => (
+                    <div key={skill.name} className='Containerskill w-[5rem] p-2 rounded-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
+                        <div className='skillImage h-[80%] flex flex-col items-center justify-center'>
+                            <img src={skill.image} width="100%" height="100%" alt={skill.name} className='skillimg object-cover xl:bg-transparent' />
+                        </div>
+                        <h1 className='skillname text-center'>{skill.name}</h1>
                     </div>
-                    <h1 className='skillname text-center'>{skill.name}</h1>
-                </div>
-            ))}
+                ))}
             </div>
         </div>
-        <div className='serviceContainer h-[100%] w-[60%] flex p-2 flex-row flex-wrap gap-y-4 pl-10'>
+        <div className='serviceContainer w-[60%] h-[100%] flex p-2 flex-row flex-wrap gap-y-4 pl-10'>
             {Services.map((service) => (
-                <div key={service.skillName} className='servicesContainer w-[17rem] cursor-pointer shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-2 mr-7'>
+                <div key={service.skillName} className='servicesContainer h-[50%] w-[17rem] cursor-pointer shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-2 mr-7'>
                     <img
                         src={service.skillImage}
                         className='imgService w-[5rem] mb-5 shadow-2xl p-2 rounded-md'
@@ -173,7 +173,6 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
                     <small>{service.skillDescription}</small>
                 </div>
             ))}
-            
         </div>
     </div>
 </Wrapper>
