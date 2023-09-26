@@ -32,9 +32,9 @@ function CardsComponent({ cardsImage, CardsTitle, CardsDescription, tech, bgColo
                     {tech.map((techItem, index) => (
                     <div
                         key={index}
-                        className="tech-item px-2 py-1 flex rounded-full bg-[#d5e4ff]"
+                        className="tech-item px-2 py-1 flex rounded-full bg-[#d7dee0]"
                     >
-                        <p className="tools text-[12px] text-[#5c99fe]">{techItem}</p>
+                        <p className="tools text-[12px] text-[#576d72]">{techItem}</p>
                     </div>
                     ))}
                     </div>
