@@ -16,11 +16,11 @@ export const Wrapper = styled.div`
 
 
 export const Cards = styled.div`
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 16px;
+    /* padding: 5px; */
     margin: 1.5rem; 
-    max-width: 20rem;
-    height: 25rem;
+    width: 20rem;
+    /* height: 25rem; */
     cursor: pointer;
 
     @media (max-width: 768px) {

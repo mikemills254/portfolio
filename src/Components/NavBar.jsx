@@ -62,6 +62,9 @@ function NavBar({ handleScrollToView }) {
                         .navList {
                             width: 100%;
                         }
+                        .logo {
+                            margin-left: 20px
+                        }
                     }
                 `}
             </style>
@@ -108,7 +111,7 @@ function NavBar({ handleScrollToView }) {
                 />
             ) : (
                 <AiOutlineMenuFold
-                    className='MenuIcon hidden items-center text-center font-bold'
+                    className='MenuIcon hidden items-center text-center font-bold mr-5'
                     onClick={() => handleToggleNavMenu()}
                     color='white'
                 />

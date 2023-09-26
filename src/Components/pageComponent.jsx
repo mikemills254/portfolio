@@ -20,6 +20,7 @@ import { toast } from 'react-hot-toast'
 import emailjs from '@emailjs/browser';
 import * as Yup from 'yup'
 import { IoLocationOutline } from 'react-icons/io5'
+import { AiOutlineMail } from 'react-icons/ai'
 import { BsPhone } from 'react-icons/bs'
 import '../Utils/mediaQuery.css'
 import { Bars } from 'react-loader-spinner'
@@ -145,7 +146,9 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
             }
         `}
     </style>
-    <h1 className='font-bold text-[2rem] text-[#161d55] underline'>Skills and Services</h1>
+    <div className='idk w-full flex items-end justify-end'>
+        <span className='labels text-end font-extrabold text-[5rem] text-[#e6e5e5]'>02. </span>
+    </div>
     <div className='serv-and-skills w-full h-[100vh] flex flex-row justify-between p-2'>
         <div className='skillsContainer h-[100%] w-[40%]'>
             <div className='skills flex flex-row flex-wrap w-full flex-grow p-2 gap-5'>
@@ -170,6 +173,7 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
                     <small>{service.skillDescription}</small>
                 </div>
             ))}
+            
         </div>
     </div>
 </Wrapper>
@@ -209,7 +213,7 @@ export const PortfolioContainer = forwardRef(({ sectionId }, ref) => {
         },
     ]
     return(
-        <Wrapper className='Container p-16 flex flex-col items-center justify-center bg-[red] h-[100%]' id={sectionId} ref={ref} style={{backgroundColor: '#d6e0e1'}}>
+        <Wrapper className='Container p-16 flex flex-col items-center justify-center bg-[#f6f9f9] h-[100%]' id={sectionId} ref={ref} style={{backgroundColor: '#efefef'}}>
             <style>
                 {`
                 @media (max-width: 768px) {
@@ -228,7 +232,8 @@ export const PortfolioContainer = forwardRef(({ sectionId }, ref) => {
                 }
                 `}
             </style>
-            <h1 className='title text-center font-bold text-[2rem] text-[#161d55] underline'>Projects</h1>
+            
+            <span className='labels font-extrabold text-[5rem] text-[#e6e5e5]'>03. </span>
             <div className='projectContents flex flex-row items-start flex-wrap'>
                 {Projects.map((project, index) => (
                     <CardsComponent
@@ -288,12 +293,12 @@ export const ContactContainer = forwardRef(({ sectionId }, ref) => {
         
         });
     return (
-        <Wrapper className='divs h-[100%] items-center flex flex-row justify-around bg-[#edf0f1]' id={sectionId} ref={ref}>
+        <Wrapper className='divs h-[100%] flex flex-col bg-[#ffffff]' id={sectionId} ref={ref}>
             <style>
                 {`
                 @media (max-width: 768px) and (max-width: 1024px) {
-                    .divs {
-                        flex-direction: column-reverse;
+                    .contact {
+                        flex-direction: column;
                     }
                     .contactIntro {
                         border-left-width: 0;
@@ -314,70 +319,69 @@ export const ContactContainer = forwardRef(({ sectionId }, ref) => {
                 }
                 `}
             </style>
-            <div className='contactIntro my-5 border-l border-[#429779] h-[100%] p-10'>
-                <h2 className='text font-bold text-[25px] text-[#51f7cb]'>Let's Get In Touch</h2>
-                <small className='text-[#0a1813]'>Feel free to get in touch with me. Let's create your dream and also be buddies!</small>
-            <div className='footer flex flex-col gap-2 h-[100%]'>
-                <div className='footer3 flex flex-row gap-1 items-center '>
-                    <IoLocationOutline color='#0a1813'/>
-                    <h6>Nairobi, Kenya</h6>
-                </div>
-                <div className='footer3 flex flex-row gap-1 items-center '>
-                    <BsPhone color='#0a1813'/>
-                    <h6>+254 701 233 944</h6>
-                </div>
-                <div className='footer3 flex flex-row gap-1 items-center '>
-                    <p>&copy; {new Date().getFullYear()} Mike Mills. All rights reserved.</p>
+            <span className='labels font-extrabold text-[5rem] text-[#e6e5e5]'>04. </span>
+            <div className='contact flex flex-row gap-5'>
+                <form onSubmit={formik.handleSubmit} ref={form} className='form p-10 items-center flex flex-col gap-4 w-1/2'>
+                    <h2 className='talkBusiness font-semibold text-[1rem]'>LET'S TALK BUSINESS </h2>
+                    <input
+                        type='text'
+                        placeholder='Your Name'
+                        name='name'
+                        value={formik.values.name}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0]'
+                    />
+                    {formik.touched.name && formik.errors.name ? <small className='text-[red]'>{formik.errors.email}</small> : null}
+                    <input
+                        type='email'
+                        placeholder='Your Email'
+                        name='email'
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0]'
+                    />
+                    {formik.touched.email && formik.errors.email ? <small className='text-[red]'>{formik.errors.email}</small> : null}
+                    <textarea
+                        placeholder='Your Message'
+                        name='message'
+                        value={formik.values.message}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0] '
+                    />
+                    {formik.touched.message && formik.errors.message ? <small className='text-[red]'>{formik.errors.message}</small> : null}
+                    <button 
+                        type='submit'
+                        disabled={formik.isSubmitting}
+                        className='submit w-full bg-[#000000] p-2 rounded text-[#ffffff] font-bold flex flex-row justify-center items-center gap-5'
+                    >
+                        SUBMIT
+                        { <Bars
+                            height="40"
+                            width="20"
+                            color="#4fa94d"
+                            ariaLabel="bars-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={isLoader}
+                            />}
+                    </button>
+                </form>
+                <div className='oti h-[100%] p-10 flex flex-col'>
+                    <h1 className='Pr mb-5'>You can as well visit my social media platform or send me an Email</h1>
+                    <span className='spans flex flx-row items-center gap-4'>
+                        <BsPhone/> +254 701 233 944
+                    </span>
+                    <span className='spans flex flx-row items-center gap-4'>
+                        <IoLocationOutline/> Eldoret, Kenya
+                    </span>
+                    <span className='spans flex flx-row items-center gap-4'>
+                        <AiOutlineMail/> mikemills930@gmail.com
+                    </span>
                 </div>
             </div>
-            </div>
-            <form onSubmit={formik.handleSubmit} ref={form} className='form border-l border-[#429779] p-10 items-center flex flex-col gap-4 w-1/2'>
-                <input
-                    type='text'
-                    placeholder='Your Name'
-                    name='name'
-                    value={formik.values.name}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#c0cfd0] text-[#c0cfd0] focus:placeholder-[#c0cfd0]'
-                />
-                {formik.touched.name && formik.errors.name ? <small className='text-[red]'>{formik.errors.email}</small> : null}
-                <input
-                    type='email'
-                    placeholder='Your Email'
-                    name='email'
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#c0cfd0] text-[#c0cfd0] focus:placeholder-[#c0cfd0]'
-                />
-                {formik.touched.email && formik.errors.email ? <small className='text-[red]'>{formik.errors.email}</small> : null}
-                <textarea
-                    placeholder='Your Message'
-                    name='message'
-                    value={formik.values.message}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#c0cfd0] text-[#c0cfd0] focus:placeholder-[#c0cfd0] '
-                />
-                {formik.touched.message && formik.errors.message ? <small className='text-[red]'>{formik.errors.message}</small> : null}
-                <button 
-                    type='submit'
-                    disabled={formik.isSubmitting}
-                    className='submit w-full bg-[#90ffdd] p-2 rounded text-[#00342d] font-bold flex flex-row justify-center items-center gap-5'
-                >
-                    SUBMIT
-                    { <Bars
-                        height="40"
-                        width="20"
-                        color="#4fa94d"
-                        ariaLabel="bars-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        visible={isLoader}
-                        />}
-                </button>
-            </form>
         </Wrapper>
     );
 })

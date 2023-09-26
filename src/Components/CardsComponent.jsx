@@ -1,18 +1,12 @@
 import React from 'react';
 import { Cards } from '../Utils/StyledComponents';
+import { AiFillGithub } from 'react-icons/ai'
 
 function CardsComponent({ cardsImage, CardsTitle, CardsDescription, tech, bgColor, linkComponent, Link }) {
     return (
-        <Cards className="card flex flex-col shadow-sm" style={{ backgroundColor: bgColor }}>
+        <Cards className="card flex flex-col rounded-2xl shadow-[0_3px_10px_rgb(0,0,0,0.2)]" style={{ backgroundColor: bgColor }}>
             <style>
             {`
-                .card {
-                display: flex;
-                flex-direction: column;
-                padding: 0.6rem;
-                height: 100%;
-                }
-    
                 @media (max-width: 768px) {
                 .card {
                     padding: 0.6rem;
@@ -23,21 +17,18 @@ function CardsComponent({ cardsImage, CardsTitle, CardsDescription, tech, bgColo
                 }
             `}
             </style>
-            <img
-                src={cardsImage}
-                className="imageStyles w-full rounded-2xl h-[30%]"
-                alt={CardsTitle}
-            />
-            <div className="cardDetails flex flex-col text-[14px] flex-grow mt-2">
-                <h1 className="cardsTitle text-left font-bold text-[1.2rem] text-[#161d55]">
-                    {CardsTitle}
-                </h1>
-            <p className="description relative align-middle flex-grow">
-                {CardsDescription}
-            </p>
+            <div className='projectImageContainer w-full h-[50%] rounded-2xl flex items-center justify-center'>
+                <img
+                    src={cardsImage}
+                    className="object-cover w-full h-full rounded-t-2xl"
+                    alt="Project Image"
+                />
             </div>
-            {tech && (
-                <div className="tech-stack flex flex-row gap-2 items-center align-middle flex-wrap pt-2">
+            <div className='projetDetailsContainer p-2 flex flex-col'>
+                <h1 className='title font-bold'>{CardsTitle}</h1>
+                <small>{CardsDescription}</small>
+                {tech && (
+                <div className="tech-stack flex flex-row gap-2 items-center align-middle flex-wrap mt-2">
                     {tech.map((techItem, index) => (
                     <div
                         key={index}
@@ -46,13 +37,17 @@ function CardsComponent({ cardsImage, CardsTitle, CardsDescription, tech, bgColo
                         <p className="tools text-[12px] text-[#5c99fe]">{techItem}</p>
                     </div>
                     ))}
-                </div>
-            )}
-            {linkComponent ? (
-                <div className='checkCode w-full bg-[#c0cfd0] flex flex-row items-center justify-center my-2 p-2 rounded'>
-                    <a href={linkComponent} className='linkName font-semibold text-[#242b2d]'>Check Code</a>
-                </div>
-            ) : null}
+                    </div>
+                )}
+                {linkComponent ? (
+                    <div className='checkCode gap-2 bg-[#c0cfd0] mt-2 mx-[90%] flex flex-row items-center justify-center my-2 rounded'>
+                        <a href={linkComponent} className='linkName font-semibold text-[#242b2d]'>
+                            <AiFillGithub size={20}/>
+                        </a>
+                    </div>
+                ) : null}
+            </div>
+
         </Cards>
         );
 }
