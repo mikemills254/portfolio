@@ -290,9 +290,9 @@ export const PortfolioContainer = forwardRef(({ sectionId }, ref) => {
 
 export const ContactContainer = forwardRef(({ sectionId }, ref) => {
     const form = useRef();
-    const SERVICE_ID = import.meta.env.VITE_REACT_APP_SERVICE_ID;
-    const TEMPLATE_ID = import.meta.env.VITE_REACT_APP_TEMPLATE_ID;
-    const PUBLIC_KEY = import.meta.env.VITE_REACT_APP_PUBLIC_KEY;
+    const SERVICE_ID = import.meta.env.VITE_REACT_APP_SERVICE_ID || 'service_dx4nak4';
+    const TEMPLATE_ID = import.meta.env.VITE_REACT_APP_TEMPLATE_ID || 'template_owmao3j';
+    const PUBLIC_KEY = import.meta.env.VITE_REACT_APP_PUBLIC_KEY || '_oJhGeuItqvHWzXF0';
     const [ isLoader, setIsLoading ] = useState(false)
 
 
