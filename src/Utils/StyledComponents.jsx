@@ -17,10 +17,8 @@ export const Wrapper = styled.div`
 
 export const Cards = styled.div`
     border-radius: 16px;
-    /* padding: 5px; */
     margin: 1.5rem; 
     width: 20rem;
-    /* height: 10rem; */
     cursor: pointer;
 
     @media (max-width: 768px) {

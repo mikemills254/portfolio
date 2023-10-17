@@ -6,7 +6,7 @@ import {
     HomeContainer,
     SkillsComponent,
     PortfolioContainer,
-    ContactContainer,
+    // ContactContainer,
 } from './Components/pageComponent';
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
             skillsRef.current.scrollIntoView({ behavior: 'smooth' });
         } else if (sectionId === 'Portfolio') {
             portfolioRef.current.scrollIntoView({ behavior: 'smooth' });
-        } else if (sectionId === 'Contact') {
+        } else if (sectionId === 'Portfolio') {
             contactRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     };
@@ -33,7 +33,7 @@ function App() {
             <HomeContainer ref={homeRef} />
             <SkillsComponent ref={skillsRef} />
             <PortfolioContainer ref={portfolioRef} />
-            <ContactContainer ref={contactRef} />
+            {/* <ContactContainer ref={contactRef} /> */}
             <Toaster position="top-center" />
         </div>
         

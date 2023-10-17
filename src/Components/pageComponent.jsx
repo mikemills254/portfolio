@@ -30,10 +30,25 @@ import ApiDev from '../Assets/images/apiDev.png'
 import fileConverter from '../Assets/images/File Converter.png'
 import Firebase from '../Assets/images/Firebase.png'
 import Mongodb from '../Assets/images/MongoDB-Logo.png'
+import { AiOutlineGithub, AiFillCodeSandboxCircle, AiFillLinkedin } from 'react-icons/ai'
+import Dots from '../Assets/images/dots.png'
+import { FaXTwitter } from 'react-icons/fa6'
+import Resume from '../Assets/Mike Resume.pdf'
 
 export const HomeContainer = forwardRef(({ sectionId }, ref) => {
+    const handleDownloadClick = () => {
+        const link = document.createElement('a');
+        link.href = Resume;
+        link.download = 'Mike Resime.pdf';
+        link.style.display = 'none';
+    
+        document.body.appendChild(link);
+        link.click();
+    
+        document.body.removeChild(link);
+    };
     return (
-        <Wrapper className='wrapperContain flex flex-col items-center pt-[7rem] px-[10rem] bg-[#c0cfd0]' id={sectionId} ref={ref}>
+        <Wrapper className='wrapperContain flex flex-row items-center py-9 bg-[#F4FBFF]' id={sectionId} ref={ref}>
             <style>
                 {`
                 @media (max-width: 768px) {
@@ -43,29 +58,52 @@ export const HomeContainer = forwardRef(({ sectionId }, ref) => {
                 }
                 `}
             </style>
-            <p className='intro text-[3rem] text-center font-bold hover:cursor-pointer text-[#000000] max-w-[60rem]'>
-                A Frontend Developer Using React and React Native JavaScript Frameworks
-            </p>
-            <div className="w-[10rem] h-[10rem] rounded-[20rem] flex items-center border-none justify-center overflow-hidden">
-                <img
-                    src={Profile}
-                    className='profileImg w-[100%] h-[100%] object-cover border-none'
-                    alt="Person"
-                />
+            <div className='section1 w-[45%] h-[80vh] flex-col flex ml-20 mt-10'>
+                <h4>
+                    WELCOME TO MY WORLD
+                </h4>
+                <h1 className='intro text-[2.6rem] font-bold leading-tight'>
+                    Hi, my name is <span className='myName text-[#4f4efc]'>Michael Mills</span> a Frontend Developer.
+                </h1>
+                <small className='description w-[30rem] text-[1rem] top-10 font-normal'>
+                    I am an enthusiast developer who is always looking
+                    out for new and exiting opportunities while 
+                    stilling delivering top notch systems
+                </small>
+                <button onClick={() => handleDownloadClick()} className='cvDownload w-[10rem] bg-[#4f4efc] my-10 p-2 rounded-full border-[1px] border-[#ffffff] font-semibold text-white'>
+                    Download CV
+                </button>
+                <div className='expo absolute p-2 w-[4rem] h-[4rem] flex items-center rounded-full bg-white top-[5rem] ml-[25rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
+                    <img
+                        src={expoIcon}
+                        width={45}
+                    />
+                </div>
+                <div className='socials flex flex-row mt-[8rem] gap-5'>
+                    <AiOutlineGithub size={20} className='icons hover:cursor-pointer'/>
+                    <AiFillCodeSandboxCircle size={20} className='icons hover:cursor-pointer'/>
+                    <AiFillLinkedin size={20} className='icons hover:cursor-pointer'/>
+                    <FaXTwitter size={19} className='icons hover:cursor-pointer'/>
+                    <div className='firebase absolute p-2 w-[4rem] h-[4rem] flex items-center rounded-full bg-white top-[25rem] ml-[20rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
+                    <img
+                        src={Firebase}
+                        width={45}
+                    />
+                </div>
+                </div>
             </div>
-            <p className='description text-center text-[1rem] max-w-[40rem] mt-5'>
-                Hello, I'm <br/>
-                <small className='logo1 text-[40px] text-red-500 font-extrabold'>Mike Mills,</small> <br/>
-                    an enthusiastic software developer, eager to turn your ideas into reality.
-                    Let's transform your vision into code and innovation! Let's collaborate to bring your vision to life through innovative coding solutions.
-            </p>
-
-            <div className='socialIcon p-2 my-2 flex flex-row items-center align-middle w-full justify-center gap-5'>
-                <SocialIcon network="github" url="https://github.com/mikemills254?tab=repositories" className='socials' style={{ fontSize: 10}}/>
-                <SocialIcon network="codepen" url="https://codesandbox.io/dashboard/recent?workspace=072dc053-9367-4fff-8ec3-f92ddaa0a0da"  className='socials'/>
-                <SocialIcon network="x" url="https://twitter.com/SweetDzaddy?t=tlxqa-fpaIVg_Y8ZMG-0pA&s=09"  className='socials' />
-                <SocialIcon network="linkedin" url="https://twitter.com/SweetDzaddy?t=tlxqa-fpaIVg_Y8ZMG-0pA&s=09"  className='socials'/>
-
+            <div className='section2 h-[70vh] w-[45%]'>
+                <div className="profileImage -mt-10">
+                    <img
+                        src={Profile}
+                        className='profile w-[28rem] h-[30rem]'
+                    />
+                    <div className='react absolute p-2 w-[4rem] h-[4rem] flex items-center rounded-full bg-white top-[10rem] ml-[25rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
+                        <img
+                            src={reactIcon}
+                        />
+                    </div>
+                </div>
             </div>
         </Wrapper>
     );
@@ -153,11 +191,11 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
         <div className='skillsContainer h-[100%] w-[40%]'>
             <div className='skills flex flex-row flex-wrap w-full flex-grow p-2 gap-5'>
                 {Skills.map((skill) => (
-                    <div key={skill.name} className='Containerskill w-[5rem] p-2 rounded-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
+                    <div key={skill.name} className='Containerskill w-[5rem] flex items-center p-2 rounded-md shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
                         <div className='skillImage h-[80%] flex flex-col items-center justify-center'>
                             <img src={skill.image} width="100%" height="100%" alt={skill.name} className='skillimg object-cover xl:bg-transparent' />
                         </div>
-                        <h1 className='skillname text-center'>{skill.name}</h1>
+                        {/* <h1 className='skillname text-center'>{skill.name}</h1> */}
                     </div>
                 ))}
             </div>
@@ -250,137 +288,137 @@ export const PortfolioContainer = forwardRef(({ sectionId }, ref) => {
     )
 })
 
-export const ContactContainer = forwardRef(({ sectionId }, ref) => {
-    const form = useRef();
-    const SERVICE_ID = import.meta.env.VITE_REACT_APP_SERVICE_ID;
-    const TEMPLATE_ID = import.meta.env.VITE_REACT_APP_TEMPLATE_ID;
-    const PUBLIC_KEY = import.meta.env.VITE_REACT_APP_PUBLIC_KEY;
-    const [ isLoader, setIsLoading ] = useState(false)
+// export const ContactContainer = forwardRef(({ sectionId }, ref) => {
+//     const form = useRef();
+//     const SERVICE_ID = import.meta.env.VITE_REACT_APP_SERVICE_ID;
+//     const TEMPLATE_ID = import.meta.env.VITE_REACT_APP_TEMPLATE_ID;
+//     const PUBLIC_KEY = import.meta.env.VITE_REACT_APP_PUBLIC_KEY;
+//     const [ isLoader, setIsLoading ] = useState(false)
 
 
-    const formik = useFormik({
-        initialValues: {
-            name: '',
-            email: '',
-            message: '',
-        },
-        validationSchema: Yup.object({
-            name: Yup.string()
-                .required('Required')
-                .max(15, 'Must be 15 characters or less'),
-            email: Yup.string()
-                .email('Invalid Email Address')
-                .required('Required'),
-            message: Yup.string().required('Required'),
-        }),
-        onSubmit: (values, { resetForm }) => {
-            setIsLoading(true);
-            emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
-                .then(
-                    () => {
-                        setIsLoading(false);
-                        toast.success('Successfully sent');
-                        console.log(values);
-                        resetForm();
-                    },
-                    (error) => {
-                        setIsLoading(false);
-                        toast.error(error.text);
-                    }
-                );
-        },
+//     const formik = useFormik({
+//         initialValues: {
+//             name: '',
+//             email: '',
+//             message: '',
+//         },
+//         validationSchema: Yup.object({
+//             name: Yup.string()
+//                 .required('Required')
+//                 .max(15, 'Must be 15 characters or less'),
+//             email: Yup.string()
+//                 .email('Invalid Email Address')
+//                 .required('Required'),
+//             message: Yup.string().required('Required'),
+//         }),
+//         onSubmit: (values, { resetForm }) => {
+//             setIsLoading(true);
+//             emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+//                 .then(
+//                     () => {
+//                         setIsLoading(false);
+//                         toast.success('Successfully sent');
+//                         console.log(values);
+//                         resetForm();
+//                     },
+//                     (error) => {
+//                         setIsLoading(false);
+//                         toast.error(error.text);
+//                     }
+//                 );
+//         },
         
-        });
-    return (
-        <Wrapper className='divs h-[100%] flex flex-col bg-[#ffffff]' id={sectionId} ref={ref}>
-            <style>
-                {`
-                @media (max-width: 768px) and (max-width: 1024px) {
-                    .contact {
-                        flex-direction: column;
-                    }
-                    .contactIntro {
-                        border-left-width: 0;
-                    }
-                    .form {
-                        border-left-width: 0;
-                        width: 100%
-                    }
-                    .inputs {
-                        width: 100%;
-                        border-Color: #c0cfd0
-                    }
-                },
-                @media (max-width: 1024px) {
-                    .divs {
-                        flex-column: column
-                    }
-                }
-                `}
-            </style>
-            <span className='labels font-extrabold text-[5rem] text-[#e6e5e5]'>04. </span>
-            <div className='contact flex flex-row gap-5'>
-                <form onSubmit={formik.handleSubmit} ref={form} className='form p-10 items-center flex flex-col gap-4 w-1/2'>
-                    <h2 className='talkBusiness font-semibold text-[1rem]'>LET'S TALK BUSINESS </h2>
-                    <input
-                        type='text'
-                        placeholder='Your Name'
-                        name='name'
-                        value={formik.values.name}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0]'
-                    />
-                    {formik.touched.name && formik.errors.name ? <small className='text-[red]'>{formik.errors.email}</small> : null}
-                    <input
-                        type='email'
-                        placeholder='Your Email'
-                        name='email'
-                        value={formik.values.email}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0]'
-                    />
-                    {formik.touched.email && formik.errors.email ? <small className='text-[red]'>{formik.errors.email}</small> : null}
-                    <textarea
-                        placeholder='Your Message'
-                        name='message'
-                        value={formik.values.message}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0] '
-                    />
-                    {formik.touched.message && formik.errors.message ? <small className='text-[red]'>{formik.errors.message}</small> : null}
-                    <button 
-                        type='submit'
-                        disabled={formik.isSubmitting}
-                        className='submit w-full bg-[#000000] p-2 rounded text-[#ffffff] font-bold flex flex-row justify-center items-center gap-5'
-                    >
-                        SUBMIT
-                        { <Bars
-                            height="40"
-                            width="20"
-                            color="#4fa94d"
-                            ariaLabel="bars-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={isLoader}
-                            />}
-                    </button>
-                </form>
-                <div className='oti h-[100%] p-10 flex flex-col'>
-                    <h1 className='Pr mb-5'>You can as well visit my social media platform or send me an Email</h1>
-                    <span className='spans flex flx-row items-center gap-4'>
-                        <BsPhone/> +254 701 233 944
-                    </span>
-                    <span className='spans flex flx-row items-center gap-4'>
-                        <IoLocationOutline/> Eldoret, Kenya
-                    </span>
-                    <span className='spans flex flx-row items-center gap-4'>
-                        <AiOutlineMail/> mikemills930@gmail.com
-                    </span>
-                </div>
-            </div>
-        </Wrapper>
-    );
-})
+//         });
+//     return (
+//         <Wrapper className='divs h-[100%] flex flex-col bg-[#F4FBFF]' id={sectionId} ref={ref}>
+//             <style>
+//                 {`
+//                 @media (max-width: 768px) and (max-width: 1024px) {
+//                     .contact {
+//                         flex-direction: column;
+//                     }
+//                     .contactIntro {
+//                         border-left-width: 0;
+//                     }
+//                     .form {
+//                         border-left-width: 0;
+//                         width: 100%
+//                     }
+//                     .inputs {
+//                         width: 100%;
+//                         border-Color: #c0cfd0
+//                     }
+//                 },
+//                 @media (max-width: 1024px) {
+//                     .divs {
+//                         flex-column: column
+//                     }
+//                 }
+//                 `}
+//             </style>
+//             <span className='labels font-extrabold text-[5rem] text-[#e6e5e5]'>04. </span>
+//             <div className='contact flex flex-row gap-5'>
+//                 <form onSubmit={formik.handleSubmit} ref={form} className='form p-10 items-center flex flex-col gap-4 w-1/2'>
+//                     <h2 className='talkBusiness font-semibold text-[1rem]'>LET'S TALK BUSINESS </h2>
+//                     <input
+//                         type='text'
+//                         placeholder='Your Name'
+//                         name='name'
+//                         value={formik.values.name}
+//                         onChange={formik.handleChange}
+//                         onBlur={formik.handleBlur}
+//                         className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0]'
+//                     />
+//                     {formik.touched.name && formik.errors.name ? <small className='text-[red]'>{formik.errors.email}</small> : null}
+//                     <input
+//                         type='email'
+//                         placeholder='Your Email'
+//                         name='email'
+//                         value={formik.values.email}
+//                         onChange={formik.handleChange}
+//                         onBlur={formik.handleBlur}
+//                         className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0]'
+//                     />
+//                     {formik.touched.email && formik.errors.email ? <small className='text-[red]'>{formik.errors.email}</small> : null}
+//                     <textarea
+//                         placeholder='Your Message'
+//                         name='message'
+//                         value={formik.values.message}
+//                         onChange={formik.handleChange}
+//                         onBlur={formik.handleBlur}
+//                         className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0] '
+//                     />
+//                     {formik.touched.message && formik.errors.message ? <small className='text-[red]'>{formik.errors.message}</small> : null}
+//                     <button 
+//                         type='submit'
+//                         disabled={formik.isSubmitting}
+//                         className='submit w-full bg-[#000000] p-2 rounded text-[#ffffff] font-bold flex flex-row justify-center items-center gap-5'
+//                     >
+//                         SUBMIT
+//                         { <Bars
+//                             height="40"
+//                             width="20"
+//                             color="#4fa94d"
+//                             ariaLabel="bars-loading"
+//                             wrapperStyle={{}}
+//                             wrapperClass=""
+//                             visible={isLoader}
+//                             />}
+//                     </button>
+//                 </form>
+//                 <div className='oti h-[100%] p-10 flex flex-col'>
+//                     <h1 className='Pr mb-5'>You can as well visit my social media platform or send me an Email</h1>
+//                     <span className='spans flex flx-row items-center gap-4'>
+//                         <BsPhone/> +254 701 233 944
+//                     </span>
+//                     <span className='spans flex flx-row items-center gap-4'>
+//                         <IoLocationOutline/> Eldoret, Kenya
+//                     </span>
+//                     <span className='spans flex flx-row items-center gap-4'>
+//                         <AiOutlineMail/> mikemills930@gmail.com
+//                     </span>
+//                 </div>
+//             </div>
+//         </Wrapper>
+//     );
+// })
