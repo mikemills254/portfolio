@@ -52,10 +52,77 @@ export const HomeContainer = forwardRef(({ sectionId }, ref) => {
             <style>
                 {`
                 @media (max-width: 425px) {
-                    .wrapperContain {
-                        font-size: 2rem;
-                        background-color: red;
-                    }
+                    .navContainer img {
+        width: 20%;
+        margin-left: 10px;
+        font-weight: bold;
+    }
+    .wrapperContain {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        background-color: red;
+    }
+    .section1 {
+        width: 90vw;
+        margin: 0;
+        height: 50vh;
+        padding-inline: 1rem;
+        /* background-color: red; */
+        /* margin-left: -10px; */
+        margin-top: -30px;
+        gap: 10px;
+    }
+    .section2 {
+        display: flex;
+        align-items: center;
+        /* background-color: blue; */
+        width: 90vw;
+    }
+    .expo {
+        position: absolute;
+        margin-left: 17rem;
+        margin-top: 12rem;
+        width: 50px;
+        height: 50px;
+        rotate: -40deg;
+    }
+    .description {
+        max-width: 22rem;
+        font-size: 15px;
+    }
+    .react {
+        position: absolute;
+        margin-left: 2rem;
+        margin-top: 25rem;
+        width: 50px;
+        height: 50px;
+        rotate: -40deg;
+    }
+    .firebase {
+        position: absolute;
+        margin-left: 3rem;
+        margin-top: -35rem;
+    }
+    .socials {
+        margin-top: 40rem;
+        display: flex;
+        position: relative;
+        align-self: center;
+    }
+    .profile {
+        width: 25rem;
+        height: 25rem;
+        /* background-color: red; */
+    }
+    .profileImage {
+        margin-top: -8rem;
+    }
                 }
                 `}
             </style>
