@@ -49,7 +49,7 @@ export const HomeContainer = forwardRef(({ sectionId }, ref) => {
     };
     return (
         <Wrapper className='wrapperContain flex flex-row items-center py-9 bg-[#F4FBFF]' id={sectionId} ref={ref}>
-            <style>
+            {/* <style>
                 {`
                 @media (max-width: 768px) {
                     .intro {
@@ -57,7 +57,7 @@ export const HomeContainer = forwardRef(({ sectionId }, ref) => {
                     }
                 }
                 `}
-            </style>
+            </style> */}
             <div className='section1 w-[45%] h-[80vh] flex-col flex ml-20 mt-10'>
                 <h4>
                     WELCOME TO MY WORLD
