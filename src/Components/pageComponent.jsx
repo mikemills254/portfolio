@@ -288,137 +288,137 @@ export const PortfolioContainer = forwardRef(({ sectionId }, ref) => {
     )
 })
 
-// export const ContactContainer = forwardRef(({ sectionId }, ref) => {
-//     const form = useRef();
-//     const SERVICE_ID = import.meta.env.VITE_REACT_APP_SERVICE_ID;
-//     const TEMPLATE_ID = import.meta.env.VITE_REACT_APP_TEMPLATE_ID;
-//     const PUBLIC_KEY = import.meta.env.VITE_REACT_APP_PUBLIC_KEY;
-//     const [ isLoader, setIsLoading ] = useState(false)
+export const ContactContainer = forwardRef(({ sectionId }, ref) => {
+    const form = useRef();
+    const SERVICE_ID = import.meta.env.VITE_REACT_APP_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.VITE_REACT_APP_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.VITE_REACT_APP_PUBLIC_KEY;
+    const [ isLoader, setIsLoading ] = useState(false)
 
 
-//     const formik = useFormik({
-//         initialValues: {
-//             name: '',
-//             email: '',
-//             message: '',
-//         },
-//         validationSchema: Yup.object({
-//             name: Yup.string()
-//                 .required('Required')
-//                 .max(15, 'Must be 15 characters or less'),
-//             email: Yup.string()
-//                 .email('Invalid Email Address')
-//                 .required('Required'),
-//             message: Yup.string().required('Required'),
-//         }),
-//         onSubmit: (values, { resetForm }) => {
-//             setIsLoading(true);
-//             emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
-//                 .then(
-//                     () => {
-//                         setIsLoading(false);
-//                         toast.success('Successfully sent');
-//                         console.log(values);
-//                         resetForm();
-//                     },
-//                     (error) => {
-//                         setIsLoading(false);
-//                         toast.error(error.text);
-//                     }
-//                 );
-//         },
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            email: '',
+            message: '',
+        },
+        validationSchema: Yup.object({
+            name: Yup.string()
+                .required('Required')
+                .max(15, 'Must be 15 characters or less'),
+            email: Yup.string()
+                .email('Invalid Email Address')
+                .required('Required'),
+            message: Yup.string().required('Required'),
+        }),
+        onSubmit: (values, { resetForm }) => {
+            setIsLoading(true);
+            emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+                .then(
+                    () => {
+                        setIsLoading(false);
+                        toast.success('Successfully sent');
+                        console.log(values);
+                        resetForm();
+                    },
+                    (error) => {
+                        setIsLoading(false);
+                        toast.error(error.text);
+                    }
+                );
+        },
         
-//         });
-//     return (
-//         <Wrapper className='divs h-[100%] flex flex-col bg-[#F4FBFF]' id={sectionId} ref={ref}>
-//             <style>
-//                 {`
-//                 @media (max-width: 768px) and (max-width: 1024px) {
-//                     .contact {
-//                         flex-direction: column;
-//                     }
-//                     .contactIntro {
-//                         border-left-width: 0;
-//                     }
-//                     .form {
-//                         border-left-width: 0;
-//                         width: 100%
-//                     }
-//                     .inputs {
-//                         width: 100%;
-//                         border-Color: #c0cfd0
-//                     }
-//                 },
-//                 @media (max-width: 1024px) {
-//                     .divs {
-//                         flex-column: column
-//                     }
-//                 }
-//                 `}
-//             </style>
-//             <span className='labels font-extrabold text-[5rem] text-[#e6e5e5]'>04. </span>
-//             <div className='contact flex flex-row gap-5'>
-//                 <form onSubmit={formik.handleSubmit} ref={form} className='form p-10 items-center flex flex-col gap-4 w-1/2'>
-//                     <h2 className='talkBusiness font-semibold text-[1rem]'>LET'S TALK BUSINESS </h2>
-//                     <input
-//                         type='text'
-//                         placeholder='Your Name'
-//                         name='name'
-//                         value={formik.values.name}
-//                         onChange={formik.handleChange}
-//                         onBlur={formik.handleBlur}
-//                         className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0]'
-//                     />
-//                     {formik.touched.name && formik.errors.name ? <small className='text-[red]'>{formik.errors.email}</small> : null}
-//                     <input
-//                         type='email'
-//                         placeholder='Your Email'
-//                         name='email'
-//                         value={formik.values.email}
-//                         onChange={formik.handleChange}
-//                         onBlur={formik.handleBlur}
-//                         className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0]'
-//                     />
-//                     {formik.touched.email && formik.errors.email ? <small className='text-[red]'>{formik.errors.email}</small> : null}
-//                     <textarea
-//                         placeholder='Your Message'
-//                         name='message'
-//                         value={formik.values.message}
-//                         onChange={formik.handleChange}
-//                         onBlur={formik.handleBlur}
-//                         className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0] '
-//                     />
-//                     {formik.touched.message && formik.errors.message ? <small className='text-[red]'>{formik.errors.message}</small> : null}
-//                     <button 
-//                         type='submit'
-//                         disabled={formik.isSubmitting}
-//                         className='submit w-full bg-[#000000] p-2 rounded text-[#ffffff] font-bold flex flex-row justify-center items-center gap-5'
-//                     >
-//                         SUBMIT
-//                         { <Bars
-//                             height="40"
-//                             width="20"
-//                             color="#4fa94d"
-//                             ariaLabel="bars-loading"
-//                             wrapperStyle={{}}
-//                             wrapperClass=""
-//                             visible={isLoader}
-//                             />}
-//                     </button>
-//                 </form>
-//                 <div className='oti h-[100%] p-10 flex flex-col'>
-//                     <h1 className='Pr mb-5'>You can as well visit my social media platform or send me an Email</h1>
-//                     <span className='spans flex flx-row items-center gap-4'>
-//                         <BsPhone/> +254 701 233 944
-//                     </span>
-//                     <span className='spans flex flx-row items-center gap-4'>
-//                         <IoLocationOutline/> Eldoret, Kenya
-//                     </span>
-//                     <span className='spans flex flx-row items-center gap-4'>
-//                         <AiOutlineMail/> mikemills930@gmail.com
-//                     </span>
-//                 </div>
-//             </div>
-//         </Wrapper>
-//     );
-// })
+        });
+    return (
+        <Wrapper className='divs h-[100%] flex flex-col bg-[#F4FBFF]' id={sectionId} ref={ref}>
+            <style>
+                {`
+                @media (max-width: 768px) and (max-width: 1024px) {
+                    .contact {
+                        flex-direction: column;
+                    }
+                    .contactIntro {
+                        border-left-width: 0;
+                    }
+                    .form {
+                        border-left-width: 0;
+                        width: 100%
+                    }
+                    .inputs {
+                        width: 100%;
+                        border-Color: #c0cfd0
+                    }
+                },
+                @media (max-width: 1024px) {
+                    .divs {
+                        flex-column: column
+                    }
+                }
+                `}
+            </style>
+            <span className='labels font-extrabold text-[5rem] text-[#e6e5e5]'>04. </span>
+            <div className='contact flex flex-row gap-5'>
+                <form onSubmit={formik.handleSubmit} ref={form} className='form p-10 items-center flex flex-col gap-4 w-1/2'>
+                    <h2 className='talkBusiness font-semibold text-[1rem]'>LET'S TALK BUSINESS </h2>
+                    <input
+                        type='text'
+                        placeholder='Your Name'
+                        name='name'
+                        value={formik.values.name}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0]'
+                    />
+                    {formik.touched.name && formik.errors.name ? <small className='text-[red]'>{formik.errors.email}</small> : null}
+                    <input
+                        type='email'
+                        placeholder='Your Email'
+                        name='email'
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0]'
+                    />
+                    {formik.touched.email && formik.errors.email ? <small className='text-[red]'>{formik.errors.email}</small> : null}
+                    <textarea
+                        placeholder='Your Message'
+                        name='message'
+                        value={formik.values.message}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        className='inputs w-full outline-none p-2 bg-inherit border-[#c0cfd0] border-[1px] rounded placeholder-[#292929] text-[#292929] focus:placeholder-[#c0cfd0] '
+                    />
+                    {formik.touched.message && formik.errors.message ? <small className='text-[red]'>{formik.errors.message}</small> : null}
+                    <button 
+                        type='submit'
+                        disabled={formik.isSubmitting}
+                        className='submit w-full bg-[#000000] p-2 rounded text-[#ffffff] font-bold flex flex-row justify-center items-center gap-5'
+                    >
+                        SUBMIT
+                        { <Bars
+                            height="40"
+                            width="20"
+                            color="#4fa94d"
+                            ariaLabel="bars-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={isLoader}
+                            />}
+                    </button>
+                </form>
+                <div className='oti h-[100%] p-10 flex flex-col'>
+                    <h1 className='Pr mb-5'>You can as well visit my social media platform or send me an Email</h1>
+                    <span className='spans flex flx-row items-center gap-4'>
+                        <BsPhone/> +254 701 233 944
+                    </span>
+                    <span className='spans flex flx-row items-center gap-4'>
+                        <IoLocationOutline/> Eldoret, Kenya
+                    </span>
+                    <span className='spans flex flx-row items-center gap-4'>
+                        <AiOutlineMail/> mikemills930@gmail.com
+                    </span>
+                </div>
+            </div>
+        </Wrapper>
+    );
+})
