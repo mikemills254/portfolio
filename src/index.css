@@ -18,7 +18,7 @@
     }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
     
     .navContainer img {
         width: 20%;
@@ -33,29 +33,29 @@
         width: 100vw;
         padding: 0;
         margin: 0;
-        height: 100%;
-        background-color: red;
+        /* background-color: blue; */
+        gap: 10px;
     }
     .section1 {
         width: 90vw;
         margin: 0;
         height: 50vh;
-        padding-inline: 1rem;
         /* background-color: red; */
-        /* margin-left: -10px; */
-        margin-top: -30px;
+        padding-inline: 1rem;
         gap: 10px;
     }
     .section2 {
         display: flex;
         align-items: center;
-        /* background-color: blue; */
+        justify-content: center;
         width: 90vw;
+        padding-right: 10px;
+        /* background-color: yellow; */
     }
     .expo {
         position: absolute;
         margin-left: 17rem;
-        margin-top: 12rem;
+        margin-top: 13rem;
         width: 50px;
         height: 50px;
         rotate: -40deg;
@@ -78,7 +78,7 @@
         margin-top: -35rem;
     }
     .socials {
-        margin-top: 40rem;
+        margin-top: 35rem;
         display: flex;
         position: relative;
         align-self: center;
@@ -86,7 +86,6 @@
     .profile {
         width: 25rem;
         height: 25rem;
-        /* background-color: red; */
     }
     .profileImage {
         margin-top: -8rem;
