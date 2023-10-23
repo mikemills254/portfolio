@@ -34,6 +34,7 @@ import { AiOutlineGithub, AiFillCodeSandboxCircle, AiFillLinkedin } from 'react-
 import Dots from '../Assets/images/dots.png'
 import { FaXTwitter } from 'react-icons/fa6'
 import Resume from '../Assets/Mike Resume.pdf'
+import checkOut from '../Assets/images/CheckOut.png'
 
 export const HomeContainer = forwardRef(({ sectionId }, ref) => {
     const handleDownloadClick = () => {
@@ -238,6 +239,13 @@ export const PortfolioContainer = forwardRef(({ sectionId }, ref) => {
             image: fileConverter,
             tech: ['vite', 'reactJs', 'axios', 'CORS', 'pdftodocx'],
             link: 'https://github.com/mikemills254/docConverter'
+        },
+        {
+            title: "Check Out System",
+            description: "A functional e-commerce checkout system intergrated with Safaricom Daraja Api. On successful transaction user recieves an email attached are his transaction id and paid amount.",
+            image: checkOut,
+            tech: ['MERN stack', 'axios', 'NodeMailer', 'Daraja API'],
+            link: 'https://github.com/mikemills254/CheckOut'
         },
     ]
     return(
