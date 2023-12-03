@@ -11,10 +11,7 @@ import html from '../Assets/images/html.png'
 import CSS from '../Assets/images/css.png'
 import { Wrapper } from '../Utils/StyledComponents'
 import CardsComponent from './CardsComponent'
-import Rate from '../Assets/images/Rate.png'
 import android from '../Assets/images/android.png'
-import Portfolio2 from '../Assets/images/Portfolio2.png'
-import { SocialIcon } from 'react-social-icons';
 import { useFormik } from 'formik'
 import { toast } from 'react-hot-toast'
 import emailjs from '@emailjs/browser';
@@ -31,11 +28,9 @@ import fileConverter from '../Assets/images/File Converter.png'
 import Firebase from '../Assets/images/Firebase.png'
 import Mongodb from '../Assets/images/MongoDB-Logo.png'
 import { AiOutlineGithub, AiFillCodeSandboxCircle, AiFillLinkedin } from 'react-icons/ai'
-import Dots from '../Assets/images/dots.png'
 import { FaXTwitter } from 'react-icons/fa6'
 import Resume from '../Assets/Mike Resume.pdf'
 import checkOut from '../Assets/images/CheckOut.png'
-// import Me from '../Assets/images/me.jpg'
 import Me from '../Assets/images/me2.jpg'
 
 export const HomeContainer = forwardRef(({ sectionId }, ref) => {
