@@ -13,7 +13,7 @@ import { Wrapper } from '../Utils/StyledComponents'
 import CardsComponent from './CardsComponent'
 import Rate from '../Assets/images/Rate.png'
 import android from '../Assets/images/android.png'
-import Profile from '../Assets/images/Portfolio.png'
+import Portfolio2 from '../Assets/images/Portfolio2.png'
 import { SocialIcon } from 'react-social-icons';
 import { useFormik } from 'formik'
 import { toast } from 'react-hot-toast'
@@ -35,6 +35,8 @@ import Dots from '../Assets/images/dots.png'
 import { FaXTwitter } from 'react-icons/fa6'
 import Resume from '../Assets/Mike Resume.pdf'
 import checkOut from '../Assets/images/CheckOut.png'
+// import Me from '../Assets/images/me.jpg'
+import Me from '../Assets/images/me2.jpg'
 
 export const HomeContainer = forwardRef(({ sectionId }, ref) => {
     const handleDownloadClick = () => {
@@ -55,7 +57,7 @@ export const HomeContainer = forwardRef(({ sectionId }, ref) => {
                     WELCOME TO MY WORLD
                 </h4>
                 <h1 className='intro text-[2.6rem] font-bold leading-tight'>
-                    Hi, my name is <span className='myName text-[#4f4efc]'>Michael Mills</span> a Frontend Developer.
+                    Hi, my name is <span className='myName text-[#4f4efc]'>Michael Mills</span> a Backend Software Developer.
                 </h1>
                 <small className='description w-[30rem] text-[1rem] top-10 font-normal'>
                     I am an enthusiast developer who is always looking
@@ -72,24 +74,28 @@ export const HomeContainer = forwardRef(({ sectionId }, ref) => {
                     />
                 </div>
                 <div className='socials flex flex-row mt-[8rem] gap-5'>
-                    <AiOutlineGithub size={20} className='icons hover:cursor-pointer'/>
+
+                    <AiOutlineGithub size={20} className='icons hover:cursor-pointer' onClick={() => window.open('https://github.com/mikemills254')}/>
                     <AiFillCodeSandboxCircle size={20} className='icons hover:cursor-pointer'/>
                     <AiFillLinkedin size={20} className='icons hover:cursor-pointer'/>
                     <FaXTwitter size={19} className='icons hover:cursor-pointer'/>
                     <div className='firebase absolute p-2 w-[4rem] h-[4rem] flex items-center rounded-full bg-white top-[25rem] ml-[20rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
-                    <img
-                        src={Firebase}
-                        width={45}
-                    />
-                </div>
+                        <img
+                            src={Firebase}
+                            width={45}
+                        />
+                    </div>
                 </div>
             </div>
             <div className='section2 h-[70vh] w-[45%]'>
                 <div className="profileImage -mt-10">
-                    <img
-                        src={Profile}
-                        className='profile w-[28rem] h-[30rem]'
-                    />
+                    <div className='meHolder w-[25rem] h-[30rem] rounded-xl'>
+                        <img
+                            src={Me}
+                            className='object-cover w-full h-full rounded-xl hover:rotate-2'
+                            alt='Portfolio Image'
+                        />
+                    </div>
                     <div className='react absolute p-2 w-[4rem] h-[4rem] flex items-center rounded-full bg-white top-[10rem] ml-[25rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
                         <img
                             src={reactIcon}

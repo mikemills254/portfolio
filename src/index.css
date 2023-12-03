@@ -36,6 +36,22 @@
         /* background-color: blue; */
         gap: 10px;
     }
+    .meHolder {
+        width: 80dvw;
+        height: 25rem;
+        padding: 10px;
+        /* background-color: red; */
+        margin-top: 10dvh;
+    }
+    .socials {
+        flex-direction: row-reverse;
+        display: none;
+        margin-top: 60dvh !important;
+    }
+    .firebase {
+        width: 45px;
+        height: 45px;
+    }
     .section1 {
         width: 90vw;
         margin: 0;
