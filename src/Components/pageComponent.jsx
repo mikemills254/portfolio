@@ -77,7 +77,7 @@ export const HomeContainer = forwardRef(({ sectionId }, ref) => {
 
                     <AiOutlineGithub size={20} className='icons hover:cursor-pointer' onClick={() => window.open('https://github.com/mikemills254')}/>
                     <AiFillCodeSandboxCircle size={20} className='icons hover:cursor-pointer'/>
-                    <AiFillLinkedin size={20} className='icons hover:cursor-pointer'/>
+                    <AiFillLinkedin size={20} className='icons hover:cursor-pointer' onClick={() => window.open('www.linkedin.com/in/michael-mills-4774a01a5')}/>
                     <FaXTwitter size={19} className='icons hover:cursor-pointer'/>
                     <div className='firebase absolute p-2 w-[4rem] h-[4rem] flex items-center rounded-full bg-white top-[25rem] ml-[20rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
                         <img
@@ -218,20 +218,20 @@ export const SkillsComponent = forwardRef(({ sectionId }, ref) => {
 
 export const PortfolioContainer = forwardRef(({ sectionId }, ref) => {
     const Projects = [
-        {
-            title: "Rate System",
-            description: "The rate and feedback system is a web application built using Express.js, Node.js, and MongoDB, allowing users to rate and provide feedback on products or services, enhancing user engagement and business insights.",
-            image: Rate,
-            tech: ['reactJs', 'mongoDb', 'reduxToolkit', 'nodeJs' ],
-            link: 'https://github.com/mikemills254/rate-system'
-        },
-        {
-            title: "Auth API 2FA",
-            description: "An Express.js JWT Authentication API is a modern method of securing web applications with JSON Web Tokens (JWT). It facilitates user registration, login, and access to protected resources through token-based authentication.",
-            image: Rate,
-            tech: ['nodeJs', 'mongoDb', 'reduxToolkit'],
-            link: 'https://github.com/mikemills254/rate-system'
-        },
+        // {
+        //     title: "Rate System",
+        //     description: "The rate and feedback system is a web application built using Express.js, Node.js, and MongoDB, allowing users to rate and provide feedback on products or services, enhancing user engagement and business insights.",
+        //     image: Rate,
+        //     tech: ['reactJs', 'mongoDb', 'reduxToolkit', 'nodeJs' ],
+        //     link: 'https://github.com/mikemills254/rate-system'
+        // },
+        // {
+        //     title: "Auth API 2FA",
+        //     description: "An Express.js JWT Authentication API is a modern method of securing web applications with JSON Web Tokens (JWT). It facilitates user registration, login, and access to protected resources through token-based authentication.",
+        //     image: Rate,
+        //     tech: ['nodeJs', 'mongoDb', 'reduxToolkit'],
+        //     link: 'https://github.com/mikemills254/rate-system'
+        // },
         {
             title: "Android News Application",
             description: "The rate and feedback system is a web application built using Express.js, Node.js, and MongoDB, allowing users to rate and provide feedback on products or services, enhancing user engagement and business insights.",
