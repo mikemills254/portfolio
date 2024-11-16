@@ -13,7 +13,7 @@ const projects = [
       image: Mailer,
       techStack: ["React", "Node.js", "MongoDB", "Express", "Docker", "Socket-io"],
       liveUrl: "#",
-      codeUrl: "#"
+      codeUrl: "https://github.com/mikemills254?tab=repositories"
     },
     {
         title: "WhatsappXno",
@@ -21,7 +21,7 @@ const projects = [
         image: WhatsappXno,
         techStack: ["React Native", "Firebase","Expo", "redux-persist", "redux"],
         liveUrl: "#",
-        codeUrl: "#"
+        codeUrl: "https://github.com/mikemills254?tab=repositories"
     },
     {
         title: "Recruitement Agency Landing page",
@@ -29,7 +29,7 @@ const projects = [
         image: Agency,
         techStack: ["React", "tailwind", "react-router-dom"],
         liveUrl: "#",
-        codeUrl: "#"
+        codeUrl: "https://github.com/mikemills254?tab=repositories"
     }
 ];
 

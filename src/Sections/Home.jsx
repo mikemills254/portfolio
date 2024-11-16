@@ -1,5 +1,5 @@
 import { forwardRef, useState, useEffect } from "react";
-import { Github, Linkedin, Twitter, ArrowRight, Code, Smartphone, Database } from "lucide-react";
+import { Github, Linkedin, Twitter, Code, Smartphone, Database } from "lucide-react";
 
 const Home = forwardRef((props, ref) => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -87,7 +87,7 @@ const Home = forwardRef((props, ref) => {
                         <Github className="w-6 h-6" />
                     </a>
                     <a
-                        href="https://linkedin.com/in/yourusername"
+                        href="https://www.linkedin.com/in/mills-mike/"
                         className="text-gray-400 hover:text-white transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -95,7 +95,7 @@ const Home = forwardRef((props, ref) => {
                         <Linkedin className="w-6 h-6" />
                     </a>
                     <a
-                        href="https://twitter.com/yourusername"
+                        href="https://twitter.com/SweetDzaddy?t=tlxqa-fpaIVg_Y8ZMG-0pA&s=09"
                         className="text-gray-400 hover:text-white transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -104,10 +104,10 @@ const Home = forwardRef((props, ref) => {
                     </a>
                 </div>
 
-                <button className="group px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full text-white font-semibold flex items-center space-x-2 hover:opacity-90 transition-opacity">
+                {/* <button className="group px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full text-white font-semibold flex items-center space-x-2 hover:opacity-90 transition-opacity">
                     <span>View My Work</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </button> */}
             </section>
         </div>
     );
