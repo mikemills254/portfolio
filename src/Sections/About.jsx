@@ -46,6 +46,7 @@ const About = forwardRef(function About(props, ref) {
             { src: "https://img.icons8.com/?size=100&id=PndQWK6M1Hjo&format=png&color=000000", alt: "Bootstrap" },
             { src: "https://img.icons8.com/?size=100&id=dJjTWMogzFzg&format=png&color=000000", alt: "Tailwind CSS" },
             { src: "https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000", alt: "Sass" },
+            { src: "https://img.icons8.com/?size=100&id=dXToVsRCZyHh&format=png&color=15c213", alt: "Jest" },
         ],
         backend: [
             { src: "https://img.icons8.com/?size=100&id=54087&format=png&color=000000", alt: "Node.js" },
@@ -81,7 +82,7 @@ const About = forwardRef(function About(props, ref) {
                     <h2 className="text-3xl font-bold">Full Stack Developer</h2>
                     <p className="text-gray-400 max-w-md">
                         Passionate about creating beautiful, functional, and user-centered digital experiences.
-                        With 5+ years of experience in web development.
+                        With 2+ years of experience in web development.
                     </p>
                     </div>
                 </section>
