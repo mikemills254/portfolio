@@ -68,7 +68,6 @@ const About = forwardRef(function About(props, ref) {
         <div ref={ref} className="min-h-screen w-screen p-8 lg:p-20 bg-gray-900 text-white">
             <div className="max-w-7xl mx-auto">
                 <div className="flex flex-col lg:flex-row items-center gap-12">
-                {/* Profile Section */}
                 <section className="w-full lg:w-1/2 flex flex-col items-center space-y-8">
                     <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
@@ -82,7 +81,7 @@ const About = forwardRef(function About(props, ref) {
                     <h2 className="text-3xl font-bold">Full Stack Developer</h2>
                     <p className="text-gray-400 max-w-md">
                         Passionate about creating beautiful, functional, and user-centered digital experiences.
-                        With 2+ years of experience in web development.
+                        With 2+ years of experience in software development.
                     </p>
                     </div>
                 </section>

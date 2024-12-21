@@ -2,11 +2,20 @@ import { forwardRef } from "react";
 import GitHubCalendar from 'react-github-calendar';
 import { Github, Calendar } from "lucide-react";
 import Mailer from '../assets/mailer.png'
+import TextBridges from "../assets/textbridges.png"
 import WhatsappXno from '../assets/WhatsappXno.jpg'
 import { ProjectCard } from "../Components/ProjectCard";
 import Agency from "../assets/Agency.png"
 
 const projects = [
+    {
+        title: "Text Bridges",
+        description: "This is a buld sms system where we integrated whatsapp business api that will send sms to clients via whatsapp",
+        image: TextBridges,
+        techStack: ["React", "Node.js", "MongoDB", "Express", "Docker", "Socket-io", "Whatsapp Business API"],
+        liveUrl: "https://textbridges.com/",
+        codeUrl: "https://github.com/mikemills254?tab=repositories"
+    },
     {
       title: "Mailer",
       description: "This is a tool i am building that will scrape contact information form a website including email and phone number and uses ai to generate email templates that will be used to send emails and also schedule",
