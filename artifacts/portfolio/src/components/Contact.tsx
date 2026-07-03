@@ -1,151 +1,332 @@
-import { useFadeIn } from '../hooks/use-fade-in';
+import { useState, useRef, useEffect, KeyboardEvent } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Send, Mail } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
+import { useFadeIn } from '../hooks/use-fade-in';
 
 function LinkedInIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
     </svg>
   );
 }
-import { Mail, ArrowRight } from 'lucide-react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useState } from 'react';
 
-const formSchema = z.object({
-  name: z.string().min(2, 'Name is required'),
-  email: z.string().email('Valid email is required'),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
-});
+const SUGGESTIONS = [
+  'I need a RAG pipeline built from scratch',
+  'Help scaling our AI infrastructure',
+  'Modernize our legacy stack',
+  'Lead a technical team short-term',
+];
 
-type FormValues = z.infer<typeof formSchema>;
+const REPLY = `Got it — I'll review the details and get back to you within 24 hours.
+
+If it's urgent, reach out directly at hello@example.com. Looking forward to hearing more.`;
+
+type Stage = 'idle' | 'thinking' | 'replied';
+
+interface Message {
+  role: 'assistant' | 'user';
+  text: string;
+}
+
+function ThinkingDots() {
+  return (
+    <div className="flex items-center gap-1 px-4 py-3" aria-label="Thinking">
+      {[0, 1, 2].map((i) => (
+        <motion.span
+          key={i}
+          className="w-1.5 h-1.5 rounded-full bg-primary/60 inline-block"
+          animate={{ opacity: [0.3, 1, 0.3] }}
+          transition={{ duration: 1.1, repeat: Infinity, delay: i * 0.2 }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function AssistantBubble({ text, isTyping }: { text?: string; isTyping?: boolean }) {
+  return (
+    <div className="flex items-start gap-3">
+      {/* Avatar */}
+      <div className="w-7 h-7 rounded-sm bg-primary flex-shrink-0 flex items-center justify-center mt-0.5">
+        <span className="text-primary-foreground text-[10px] font-bold tracking-tight select-none">AI</span>
+      </div>
+      <div className="bg-secondary border border-border rounded-lg rounded-tl-sm px-4 py-3 text-sm leading-relaxed text-foreground max-w-sm">
+        {isTyping ? <ThinkingDots /> : (
+          <p className="whitespace-pre-line">{text}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function UserBubble({ text }: { text: string }) {
+  return (
+    <div className="flex justify-end">
+      <div className="bg-primary text-primary-foreground rounded-lg rounded-tr-sm px-4 py-3 text-sm leading-relaxed max-w-sm">
+        <p>{text}</p>
+      </div>
+    </div>
+  );
+}
 
 export function Contact() {
-  const ref = useFadeIn();
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const sectionRef = useFadeIn();
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      role: 'assistant',
+      text: "Hi — I'm available for select consulting engagements. What are you working on?",
+    },
+  ]);
+  const [stage, setStage] = useState<Stage>('idle');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [input, setInput] = useState('');
+  const [errors, setErrors] = useState<{ name?: string; email?: string; input?: string }>({});
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting }
-  } = useForm<FormValues>({
-    resolver: zodResolver(formSchema)
-  });
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, stage]);
 
-  const onSubmit = async (data: FormValues) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log('Form submitted:', data);
-    setIsSubmitted(true);
-    reset();
-    setTimeout(() => setIsSubmitted(false), 5000);
-  };
+  function validate() {
+    const e: typeof errors = {};
+    if (!name.trim() || name.trim().length < 2) e.name = 'Required';
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = 'Valid email required';
+    if (!input.trim() || input.trim().length < 5) e.input = 'Say something';
+    return e;
+  }
+
+  async function send() {
+    if (stage !== 'idle') return;
+    const e = validate();
+    if (Object.keys(e).length) { setErrors(e); return; }
+    setErrors({});
+
+    const userMsg = `${input.trim()}\n\n— ${name.trim()} (${email.trim()})`;
+    setMessages((m) => [...m, { role: 'user', text: input.trim() }]);
+    setInput('');
+    setStage('thinking');
+
+    await new Promise((r) => setTimeout(r, 1800));
+
+    setStage('replied');
+    setMessages((m) => [...m, { role: 'assistant', text: REPLY }]);
+    void userMsg; // logged/sent in real impl
+  }
+
+  function onKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) send();
+  }
+
+  function applySuggestion(s: string) {
+    setInput(s);
+    textareaRef.current?.focus();
+  }
 
   return (
-    <section id="contact" className="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto" data-testid="section-contact">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24" ref={ref}>
-        
+    <section
+      id="contact"
+      className="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto"
+      data-testid="section-contact"
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24" ref={sectionRef}>
+
+        {/* Left — info */}
         <div>
-          <h2 className="text-xs uppercase tracking-[0.2em] font-semibold text-primary mb-4" data-testid="text-contact-label">Get in Touch</h2>
-          <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-6" data-testid="text-contact-headline">Let's discuss your next major initiative.</h3>
-          <p className="text-muted-foreground leading-relaxed mb-12 max-w-md">
-            I'm currently accepting select consulting engagements for Q3. If you have a hard problem that needs solving, I'd love to hear about it.
+          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary mb-4" data-testid="text-contact-label">
+            Contact
           </p>
-          
-          <div className="space-y-6">
-            <a href="mailto:hello@example.com" className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group w-fit" data-testid="link-contact-email">
-              <div className="w-10 h-10 rounded border border-border flex items-center justify-center group-hover:border-primary/50 transition-colors">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6" data-testid="text-contact-headline">
+            Let's build something that matters.
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-12 max-w-md">
+            I'm selective about engagements — I work best with teams who have a real problem
+            and the conviction to solve it properly. Tell me what you're building.
+          </p>
+
+          <div className="space-y-5">
+            <a
+              href="mailto:hello@example.com"
+              className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group w-fit"
+              data-testid="link-contact-email"
+            >
+              <div className="w-9 h-9 rounded-sm border border-border flex items-center justify-center group-hover:border-primary/50 transition-colors">
                 <Mail className="w-4 h-4" />
               </div>
               <span className="font-medium text-sm">hello@example.com</span>
             </a>
-            
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group w-fit" data-testid="link-contact-linkedin">
-              <div className="w-10 h-10 rounded border border-border flex items-center justify-center group-hover:border-primary/50 transition-colors">
+
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group w-fit"
+              data-testid="link-contact-linkedin"
+            >
+              <div className="w-9 h-9 rounded-sm border border-border flex items-center justify-center group-hover:border-primary/50 transition-colors">
                 <LinkedInIcon className="w-4 h-4" />
               </div>
-              <span className="font-medium text-sm">LinkedIn Profile</span>
+              <span className="font-medium text-sm">LinkedIn</span>
             </a>
-            
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group w-fit" data-testid="link-contact-github">
-              <div className="w-10 h-10 rounded border border-border flex items-center justify-center group-hover:border-primary/50 transition-colors">
+
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group w-fit"
+              data-testid="link-contact-github"
+            >
+              <div className="w-9 h-9 rounded-sm border border-border flex items-center justify-center group-hover:border-primary/50 transition-colors">
                 <SiGithub className="w-4 h-4" />
               </div>
-              <span className="font-medium text-sm">GitHub Architecture</span>
+              <span className="font-medium text-sm">GitHub</span>
             </a>
           </div>
         </div>
 
-        <div className="bg-secondary/30 p-8 rounded border border-border">
-          {isSubmitted ? (
-            <div className="h-full flex flex-col items-center justify-center text-center py-12" data-testid="form-contact-success">
-              <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-6">
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h4 className="text-xl font-bold mb-2">Message Received</h4>
-              <p className="text-muted-foreground text-sm">I'll get back to you within 24 hours.</p>
+        {/* Right — AI chat interface */}
+        <div
+          className="flex flex-col border border-border rounded-xl overflow-hidden bg-background shadow-sm"
+          style={{ minHeight: '520px' }}
+          data-testid="chat-contact-panel"
+        >
+          {/* Chrome bar */}
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-secondary/30">
+            <div className="flex gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-border" />
+              <span className="w-2.5 h-2.5 rounded-full bg-border" />
+              <span className="w-2.5 h-2.5 rounded-full bg-border" />
             </div>
-          ) : (
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" data-testid="form-contact">
-              <div>
-                <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Name</label>
-                <input
-                  {...register('name')}
-                  id="name"
-                  aria-invalid={!!errors.name}
-                  aria-describedby={errors.name ? 'name-error' : undefined}
-                  className="w-full bg-background border border-border rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                  placeholder="Jane Doe"
-                  data-testid="input-contact-name"
-                />
-                {errors.name && <p id="name-error" role="alert" className="text-destructive text-xs mt-1">{errors.name.message}</p>}
+            <span className="text-xs text-muted-foreground font-mono ml-2 select-none">
+              new-engagement.thread
+            </span>
+            <span className="ml-auto flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <span className="text-xs text-muted-foreground">online</span>
+            </span>
+          </div>
+
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto px-5 py-5 space-y-4 min-h-0" style={{ maxHeight: '280px' }}>
+            <AnimatePresence initial={false}>
+              {messages.map((msg, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {msg.role === 'assistant'
+                    ? <AssistantBubble text={msg.text} />
+                    : <UserBubble text={msg.text} />}
+                </motion.div>
+              ))}
+              {stage === 'thinking' && (
+                <motion.div
+                  key="thinking"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <AssistantBubble isTyping />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <div ref={bottomRef} />
+          </div>
+
+          {/* Suggestion chips */}
+          {stage === 'idle' && messages.length === 1 && (
+            <div className="px-5 pb-3 flex flex-wrap gap-2">
+              {SUGGESTIONS.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => applySuggestion(s)}
+                  className="text-xs px-3 py-1.5 rounded-full border border-border bg-secondary/50 hover:border-primary/40 hover:bg-secondary transition-colors text-muted-foreground hover:text-foreground"
+                  data-testid={`chip-suggestion-${s.slice(0, 10).replace(/\s/g, '-')}`}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Input area */}
+          {stage !== 'replied' && (
+            <div className="border-t border-border px-4 py-4 space-y-3 bg-background">
+              {/* Name + email row */}
+              <div className="flex gap-2">
+                <div className="flex-1">
+                  <input
+                    value={name}
+                    onChange={(e) => { setName(e.target.value); setErrors((er) => ({ ...er, name: undefined })); }}
+                    placeholder="Your name"
+                    className={`w-full text-xs px-3 py-2 rounded-md border bg-secondary/30 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:border-primary transition-all placeholder:text-muted-foreground/60 ${errors.name ? 'border-destructive' : 'border-border'}`}
+                    aria-label="Your name"
+                    aria-invalid={!!errors.name}
+                    data-testid="input-contact-name"
+                  />
+                </div>
+                <div className="flex-1">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => { setEmail(e.target.value); setErrors((er) => ({ ...er, email: undefined })); }}
+                    placeholder="your@email.com"
+                    className={`w-full text-xs px-3 py-2 rounded-md border bg-secondary/30 focus:outline-none focus:ring-1 focus:ring-primary/30 focus:border-primary transition-all placeholder:text-muted-foreground/60 ${errors.email ? 'border-destructive' : 'border-border'}`}
+                    aria-label="Your email"
+                    aria-invalid={!!errors.email}
+                    data-testid="input-contact-email"
+                  />
+                </div>
               </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Email</label>
-                <input
-                  {...register('email')}
-                  id="email"
-                  type="email"
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? 'email-error' : undefined}
-                  className="w-full bg-background border border-border rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                  placeholder="jane@company.com"
-                  data-testid="input-contact-email"
-                />
-                {errors.email && <p id="email-error" role="alert" className="text-destructive text-xs mt-1">{errors.email.message}</p>}
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Message</label>
+
+              {/* Message + send */}
+              <div className={`flex items-end gap-2 rounded-lg border bg-secondary/20 px-3 py-2 transition-all focus-within:ring-1 focus-within:ring-primary/30 focus-within:border-primary ${errors.input ? 'border-destructive' : 'border-border'}`}>
                 <textarea
-                  {...register('message')}
-                  id="message"
-                  rows={4}
-                  aria-invalid={!!errors.message}
-                  aria-describedby={errors.message ? 'message-error' : undefined}
-                  className="w-full bg-background border border-border rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
-                  placeholder="Tell me about the problem you're trying to solve..."
+                  ref={textareaRef}
+                  value={input}
+                  onChange={(e) => { setInput(e.target.value); setErrors((er) => ({ ...er, input: undefined })); }}
+                  onKeyDown={onKeyDown}
+                  rows={2}
+                  placeholder="Describe what you're building or the problem you're solving… (⌘↵ to send)"
+                  className="flex-1 resize-none bg-transparent text-sm focus:outline-none placeholder:text-muted-foreground/50 leading-relaxed"
+                  aria-label="Your message"
+                  aria-invalid={!!errors.input}
+                  aria-describedby={errors.input ? 'msg-error' : undefined}
                   data-testid="input-contact-message"
-                ></textarea>
-                {errors.message && <p id="message-error" role="alert" className="text-destructive text-xs mt-1">{errors.message.message}</p>}
+                />
+                <button
+                  onClick={send}
+                  disabled={stage !== 'idle'}
+                  className="flex-shrink-0 w-8 h-8 rounded-md bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed mb-0.5"
+                  aria-label="Send message"
+                  data-testid="button-contact-submit"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                </button>
               </div>
-              
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-primary text-primary-foreground text-sm font-medium rounded hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
-                data-testid="button-contact-submit"
-              >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-                {!isSubmitting && <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
-              </button>
-            </form>
+
+              {/* Inline errors */}
+              {(errors.name || errors.email || errors.input) && (
+                <p id="msg-error" role="alert" className="text-destructive text-xs">
+                  {errors.name
+                    ? 'Name required. '
+                    : errors.email
+                    ? 'Valid email required. '
+                    : 'Write a message first.'}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Replied state footer */}
+          {stage === 'replied' && (
+            <div className="border-t border-border px-5 py-4 bg-secondary/20 text-xs text-muted-foreground text-center">
+              Message sent — I'll be in touch within 24 hours.
+            </div>
           )}
         </div>
       </div>
