@@ -146,28 +146,6 @@ export default function Hero() {
             Get In Touch
           </button>
         </motion.div>
-
-        {/* Stats row */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-4"
-        >
-          {[
-            { value: '3+', label: 'Years experience' },
-            { value: '10+', label: 'Projects shipped' },
-            { value: '4+', label: 'Industries' }
-          ].map((s, i) => (
-            <div key={i} className="flex items-center gap-3" data-testid={`stat-hero-${i}`}>
-              {i > 0 && <span className="hidden sm:block w-px h-6 bg-border" />}
-              <div>
-                <span className="text-xl font-bold tracking-tight">{s.value}</span>
-                <span className="text-xs text-muted-foreground ml-2 uppercase tracking-wider">{s.label}</span>
-              </div>
-            </div>
-          ))}
-        </motion.div>
       </div>
 
       {/* Full-bleed scrolling marquee */}
