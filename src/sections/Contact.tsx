@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, KeyboardEvent } from 'react';
+import { useState, useRef, useEffect, type KeyboardEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Mail } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
@@ -71,7 +71,7 @@ function UserBubble({ text }: { text: string }) {
   );
 }
 
-export function Contact() {
+export default function Contact() {
   const sectionRef = useFadeIn();
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -156,11 +156,11 @@ export function Contact() {
               <div className="w-9 h-9 rounded-sm border border-border flex items-center justify-center group-hover:border-primary/50 transition-colors">
                 <Mail className="w-4 h-4" />
               </div>
-              <span className="font-medium text-sm">hello@example.com</span>
+              <span className="font-medium text-sm">hello@mills.co.ke</span>
             </a>
 
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/mills-mike/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group w-fit"
@@ -173,7 +173,7 @@ export function Contact() {
             </a>
 
             <a
-              href="https://github.com"
+              href="https://github.com/mikemills254"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group w-fit"
@@ -315,8 +315,8 @@ export function Contact() {
                   {errors.name
                     ? 'Name required. '
                     : errors.email
-                    ? 'Valid email required. '
-                    : 'Write a message first.'}
+                      ? 'Valid email required. '
+                      : 'Write a message first.'}
                 </p>
               )}
             </div>

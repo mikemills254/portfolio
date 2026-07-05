@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
-export function Navbar() {
+export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
@@ -66,10 +66,10 @@ export function Navbar() {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-8">
-                        <button onClick={() => handleNavigation('work')} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="nav-link-work">Work</button>
-                        <button onClick={() => handleNavigation('expertise')} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="nav-link-expertise">Expertise</button>
-                        <button onClick={() => navigate('/timeline')} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="nav-link-timeline">Timeline</button>
-                        <button onClick={() => handleNavigation('contact')} className="text-sm font-medium px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors" data-testid="nav-cta-contact">
+                        <button onClick={() => handleNavigation('work')} className="text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="nav-link-work">Work</button>
+                        <button onClick={() => handleNavigation('expertise')} className="text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="nav-link-expertise">Expertise</button>
+                        <button onClick={() => navigate('/timeline')} className="text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="nav-link-timeline">Timeline</button>
+                        <button onClick={() => handleNavigation('contact')} className="text-sm cursor-pointer font-medium px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors" data-testid="nav-cta-contact">
                             Get In Touch
                         </button>
                     </div>

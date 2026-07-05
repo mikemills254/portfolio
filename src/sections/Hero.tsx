@@ -37,7 +37,7 @@ function MarqueeTrack() {
   );
 }
 
-export function Hero() {
+export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
 
   const scrollTo = (id: string) => {

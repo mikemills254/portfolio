@@ -1,6 +1,6 @@
-import { Footer } from '@/components/Footer';
+import Footer from '@/components/footer';
 import { useFadeIn } from '../hooks/use-fade-in';
-import { Navbar } from '@/components/nabvar';
+import Navbar from '@/components/nabvar';
 
 interface Role {
     company: string;

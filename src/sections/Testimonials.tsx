@@ -2,26 +2,14 @@ import { useFadeIn } from '../hooks/use-fade-in';
 
 const testimonials = [
   {
-    quote: "He doesn't just build what you ask for; he builds what the business actually needs. The architecture he designed handled our 10x growth phase without a single major incident.",
-    author: "Sarah Jenkins",
-    title: "CTO",
-    company: "Nexus Financial"
-  },
-  {
-    quote: "Bringing him on was the highest ROI decision we made this year. He shipped the enterprise AI integration in half the expected time, and the code quality set a new standard for our internal teams.",
-    author: "David Chen",
-    title: "VP Engineering",
-    company: "Stratos Consulting"
-  },
-  {
-    quote: "Rare combination of deep technical expertise and clear executive communication. He translates complex architectural trade-offs into clear business decisions effortlessly.",
-    author: "Elena Rodriguez",
-    title: "Founder & CEO",
-    company: "Altimeter Systems"
+    quote: "Let Craig David do the walking, Michael won’t. When something in the system isn’t right, he stays at his workstation until it is. He sticks with problems and works through them until they’re resolved. That level of care and attention is exactly what a team needs.",
+    author: "Frankline Were",
+    title: "DevOps Engineer | AWS · Docker · CI/CD | Python Backend | KCNA Certified",
+    company: "Colmusk Limited"
   }
 ];
 
-export function Testimonials() {
+export default function Testimonials() {
   const ref = useFadeIn();
 
   return (
@@ -31,7 +19,7 @@ export function Testimonials() {
           <h2 className="text-xs uppercase tracking-[0.2em] font-semibold text-primary-foreground/60 mb-4" data-testid="text-testimonials-label">Client Feedback</h2>
           <h3 className="text-3xl font-bold tracking-tight" data-testid="text-testimonials-headline">Trusted by technical leaders.</h3>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
             <div key={i} className="flex flex-col p-8 border border-primary-foreground/20 rounded bg-primary-foreground/5 hover:bg-primary-foreground/10 transition-colors" data-testid={`card-testimonial-${i}`}>

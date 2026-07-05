@@ -27,7 +27,7 @@ const areas = [
   }
 ];
 
-export function Expertise() {
+export default function Expertise() {
   const ref = useFadeIn();
 
   return (

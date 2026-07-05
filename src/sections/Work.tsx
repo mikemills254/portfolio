@@ -22,7 +22,7 @@ const cases = [
   }
 ];
 
-export function Work() {
+export default function Work() {
   const ref = useFadeIn();
 
   return (
@@ -32,7 +32,7 @@ export function Work() {
           <h2 className="text-xs uppercase tracking-[0.2em] font-semibold text-primary mb-4" data-testid="text-work-label">Selected Work</h2>
           <h3 className="text-3xl md:text-4xl font-bold tracking-tight" data-testid="text-work-headline">Outcomes, not just output.</h3>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {cases.map((c, i) => (
             <div key={i} className="group relative bg-card rounded border border-border p-8 flex flex-col hover:shadow-md transition-all duration-300 hover:border-primary/20" data-testid={`card-work-${i}`}>
