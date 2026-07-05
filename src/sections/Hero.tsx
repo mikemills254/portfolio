@@ -155,10 +155,9 @@ export default function Hero() {
           className="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-4"
         >
           {[
-            { value: '12+', label: 'Years experience' },
-            { value: '60+', label: 'Projects shipped' },
-            { value: '8', label: 'Industries' },
-            { value: '$0', label: 'Missed deadlines' },
+            { value: '3+', label: 'Years experience' },
+            { value: '10+', label: 'Projects shipped' },
+            { value: '4+', label: 'Industries' }
           ].map((s, i) => (
             <div key={i} className="flex items-center gap-3" data-testid={`stat-hero-${i}`}>
               {i > 0 && <span className="hidden sm:block w-px h-6 bg-border" />}

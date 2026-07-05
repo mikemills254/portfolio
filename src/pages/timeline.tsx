@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Footer from '@/components/footer';
 import { useFadeIn } from '../hooks/use-fade-in';
 import Navbar from '@/components/nabvar';
@@ -138,6 +139,12 @@ export default function Timeline() {
     const ref = useFadeIn();
 
     return (
+        <>
+            <Helmet>
+                <title>Career Timeline | Mike Mills Ngaira</title>
+                <meta name="description" content="Career progression and achievements of Mike Mills. See my professional journey in Full Stack Development and AI." />
+                <link rel="canonical" href="https://mills.co.ke/timeline" />
+            </Helmet>
         <div className="min-h-screen flex flex-col">
             <Navbar />
             <main className="flex-1">
@@ -190,5 +197,6 @@ export default function Timeline() {
             </main>
             <Footer />
         </div>
+        </>
     );
 }
