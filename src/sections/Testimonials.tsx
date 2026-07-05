@@ -4,7 +4,7 @@ const testimonials = [
   {
     quote: "Let Craig David do the walking, Michael won’t. When something in the system isn’t right, he stays at his workstation until it is. He sticks with problems and works through them until they’re resolved. That level of care and attention is exactly what a team needs.",
     author: "Frankline Were",
-    title: "DevOps Engineer | AWS · Docker · CI/CD | Python Backend | KCNA Certified",
+    title: "DevOps Engineer",
     company: "Colmusk Limited"
   }
 ];
