@@ -21,7 +21,7 @@ const SUGGESTIONS = [
 
 const REPLY = `Got it — I'll review the details and get back to you within 24 hours.
 
-If it's urgent, reach out directly at hello@example.com. Looking forward to hearing more.`;
+If it's urgent, reach out directly at hello@mills.co.ke. Looking forward to hearing more.`;
 
 type Stage = 'idle' | 'thinking' | 'replied';
 
@@ -148,7 +148,7 @@ export default function Contact() {
 
                     <div className="space-y-5">
                         <a
-                            href="mailto:hello@example.com"
+                            href="mailto:hello@mills.co.ke"
                             className="flex items-center gap-4 text-foreground hover:text-primary transition-colors group w-fit"
                             data-testid="link-contact-email"
                         >

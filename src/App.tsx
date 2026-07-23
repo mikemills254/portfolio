@@ -1,10 +1,10 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { Home } from "lucide-react";
 import { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async"
-import Toaster from "react-hot-toast"
+import { Toaster } from "react-hot-toast"
 import { useLocation, Routes, Route } from "react-router-dom";
 import { TooltipProvider } from "./components/ui/tooltip";
+import Home from "./pages/home";
 import NotFound from "./pages/not-found";
 
 const queryClient = new QueryClient();

@@ -1,5 +1,5 @@
-import { Contact } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import Contact from '../sections/contact';
 import Expertise from '../sections/expertise';
 import Hero from '../sections/hero';
 import Testimonials from '../sections/testimonials';

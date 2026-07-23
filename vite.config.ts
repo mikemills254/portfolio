@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    Sitemap({ hostname: 'https://mills.co.ke', dynamicRoutes: ['/timeline'] })
+    Sitemap({ hostname: 'https://mills.co.ke' })
   ],
   resolve: {
     alias: {
