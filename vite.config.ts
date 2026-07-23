@@ -9,7 +9,16 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    Sitemap({ hostname: 'https://mills.co.ke' })
+    Sitemap({
+      hostname: 'https://mills.co.ke',
+      dynamicRoutes: [
+        '/about',
+        '/services',
+        '/work/civic-rag-assistant',
+        '/work/business-management-platform',
+        '/work/pharmacy-inventory-system',
+      ],
+    })
   ],
   resolve: {
     alias: {
