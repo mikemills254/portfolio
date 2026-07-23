@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { useFadeIn } from '../hooks/use-fade-in';
 import { caseStudies } from '../data/case-studies';
 import { TechStackIcons } from '../components/case-study/tech-stack-icons';
+import { CardVisual } from '../components/case-study/card-visual';
 
 export default function Work() {
     const ref = useFadeIn();
@@ -23,6 +24,8 @@ export default function Work() {
                             className="group relative bg-card rounded border border-border p-8 flex flex-col hover:shadow-md transition-all duration-300 hover:border-primary/20"
                             data-testid={`card-work-${i}`}
                         >
+                            <CardVisual slug={c.slug} className="h-36 mb-6 transition-transform duration-300 group-hover:scale-[1.02]" />
+
                             <div className="mb-8 flex items-center justify-between">
                                 <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{c.category}</span>
                                 <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />

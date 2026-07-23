@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { getCaseStudy } from '../data/case-studies';
 import { ArchitectureDiagram } from '../components/case-study/architecture-diagram';
+import { CardVisual } from '../components/case-study/card-visual';
 import { TechStackIcons } from '../components/case-study/tech-stack-icons';
 import Footer from '../components/ui/footer';
 import Navbar from '../components/ui/navbar';
@@ -52,6 +53,10 @@ export default function CaseStudy() {
                             {caseStudy.title}
                         </h1>
                         <p className="text-muted-foreground leading-relaxed">{caseStudy.role}</p>
+                    </section>
+
+                    <section className="px-6 md:px-12 max-w-5xl mx-auto pb-16">
+                        <CardVisual slug={caseStudy.slug} className="h-56 md:h-64" />
                     </section>
 
                     <section className="px-6 md:px-12 max-w-4xl mx-auto pb-16">
