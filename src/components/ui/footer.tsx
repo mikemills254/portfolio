@@ -27,7 +27,7 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
                 <div className="flex items-center gap-2.5 cursor-pointer hover:opacity-80 transition-opacity" onClick={() => handleNavigation('home')}>
                     <img src="/logo.svg" alt="" className="h-7 w-auto" />
-                    <span className="text-sm font-bold tracking-tight">Mike Mills</span>
+                    <span className="text-sm font-bold tracking-tight">Mills</span>
                 </div>
 
                 <div className="flex items-center gap-6">

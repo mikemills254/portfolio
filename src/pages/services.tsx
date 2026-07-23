@@ -89,7 +89,7 @@ export default function Services() {
     return (
         <>
             <Helmet>
-                <title>Services | Mike Mills</title>
+                <title>Services | Mills</title>
                 <meta name="description" content="Project-based and retainer engagements for RAG pipelines, AI feature integration, and full-stack systems." />
                 <link rel="canonical" href="https://mills.co.ke/services" />
             </Helmet>

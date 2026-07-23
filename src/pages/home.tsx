@@ -12,7 +12,7 @@ export default function Home() {
     return (
         <>
             <Helmet>
-                <title>Mike Mills | AI & RAG Engineer — Nairobi, Kenya</title>
+                <title>Mills | AI & RAG Engineer — Nairobi, Kenya</title>
                 <meta name="description" content="AI & RAG engineer based in Nairobi, Kenya, building production Retrieval-Augmented Generation pipelines, LLM integrations, and full-stack systems for teams across East Africa and remote." />
                 <link rel="canonical" href="https://mills.co.ke/" />
             </Helmet>

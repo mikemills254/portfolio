@@ -13,6 +13,8 @@ export interface CaseStudy {
     approach: CaseStudyStep[];
     outcome: string;
     stack: string[];
+    /** Architecture flow: each entry is a stage; a stage can have multiple parallel nodes. */
+    diagram: string[][];
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -55,6 +57,14 @@ export const caseStudies: CaseStudy[] = [
         outcome:
             'Reduced build time for each subsequent civic RAG product by roughly 50%, and proved the same architecture generalizes across domains — public finance and constitutional law — without re-engineering the core pipeline.',
         stack: ['Node.js', 'TypeScript', 'LangChain', 'Pinecone', 'OpenAI / GPT-4', 'AWS', 'Docker'],
+        diagram: [
+            ['Source Documents'],
+            ['Ingestion & Chunking'],
+            ['Embeddings'],
+            ['Vector Search'],
+            ['Guarded LLM'],
+            ['WhatsApp Delivery'],
+        ],
     },
     {
         slug: 'business-management-platform',
@@ -94,7 +104,12 @@ export const caseStudies: CaseStudy[] = [
         ],
         outcome:
             'Gave business owners a single system for day-to-day operations and automated financial reporting that previously required manual reconciliation.',
-        stack: ['Node.js', 'TypeScript', 'MongoDB', 'RESTful APIs', 'RBAC', 'Docker'],
+        stack: ['Node.js', 'TypeScript', 'MongoDB', 'Docker'],
+        diagram: [
+            ['Booking Interface'],
+            ['API Layer'],
+            ['Database', 'Accounting Sync'],
+        ],
     },
     {
         slug: 'pharmacy-inventory-system',
@@ -129,7 +144,12 @@ export const caseStudies: CaseStudy[] = [
         ],
         outcome:
             'Gave pharmacy staff real-time inventory and expiry visibility, supporting regulatory compliance and reducing manual tracking errors.',
-        stack: ['Node.js', 'TypeScript', 'PostgreSQL', 'React', 'RESTful APIs'],
+        stack: ['Node.js', 'TypeScript', 'PostgreSQL', 'React'],
+        diagram: [
+            ['Pharmacy Portal'],
+            ['API Layer'],
+            ['Database', 'Stock Alerts'],
+        ],
     },
 ];
 

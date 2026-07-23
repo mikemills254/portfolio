@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { useFadeIn } from '../hooks/use-fade-in';
 import { caseStudies } from '../data/case-studies';
+import { TechStackIcons } from '../components/case-study/tech-stack-icons';
 
 export default function Work() {
     const ref = useFadeIn();
@@ -30,12 +31,8 @@ export default function Work() {
                             <p className="text-muted-foreground mb-8 text-sm leading-relaxed grow">
                                 {c.summary}
                             </p>
-                            <div className="pt-6 border-t border-border mt-auto flex flex-wrap gap-2">
-                                {c.stack.map((s) => (
-                                    <span key={s} className="text-xs font-medium text-muted-foreground bg-secondary/60 border border-border rounded-full px-2.5 py-1">
-                                        {s}
-                                    </span>
-                                ))}
+                            <div className="pt-6 border-t border-border mt-auto">
+                                <TechStackIcons stack={c.stack} />
                             </div>
                         </Link>
                     ))}

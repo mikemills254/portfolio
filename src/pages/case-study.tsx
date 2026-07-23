@@ -2,6 +2,8 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { getCaseStudy } from '../data/case-studies';
+import { ArchitectureDiagram } from '../components/case-study/architecture-diagram';
+import { TechStackIcons } from '../components/case-study/tech-stack-icons';
 import Footer from '../components/ui/footer';
 import Navbar from '../components/ui/navbar';
 import NotFound from './not-found';
@@ -25,7 +27,7 @@ export default function CaseStudy() {
     return (
         <>
             <Helmet>
-                <title>{caseStudy.title} | Mike Mills</title>
+                <title>{caseStudy.title} | Mills</title>
                 <meta name="description" content={caseStudy.summary} />
                 <link rel="canonical" href={`https://mills.co.ke/work/${caseStudy.slug}`} />
             </Helmet>
@@ -53,18 +55,17 @@ export default function CaseStudy() {
                     </section>
 
                     <section className="px-6 md:px-12 max-w-4xl mx-auto pb-16">
-                        <div className="flex flex-wrap gap-2">
-                            {caseStudy.stack.map((s) => (
-                                <span key={s} className="text-xs font-medium text-muted-foreground bg-secondary/60 border border-border rounded-full px-2.5 py-1">
-                                    {s}
-                                </span>
-                            ))}
-                        </div>
+                        <TechStackIcons stack={caseStudy.stack} size="md" />
                     </section>
 
                     <section className="px-6 md:px-12 max-w-4xl mx-auto pb-16">
                         <h2 className="text-xs uppercase tracking-[0.2em] font-semibold text-primary mb-4">The Problem</h2>
                         <p className="text-lg leading-relaxed">{caseStudy.problem}</p>
+                    </section>
+
+                    <section className="px-6 md:px-12 max-w-5xl mx-auto pb-16">
+                        <h2 className="text-xs uppercase tracking-[0.2em] font-semibold text-primary mb-8">Architecture</h2>
+                        <ArchitectureDiagram stages={caseStudy.diagram} />
                     </section>
 
                     <section className="px-6 md:px-12 max-w-4xl mx-auto pb-16">

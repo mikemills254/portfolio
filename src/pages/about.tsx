@@ -64,7 +64,7 @@ export default function About() {
     return (
         <>
             <Helmet>
-                <title>About | Mike Mills</title>
+                <title>About | Mills</title>
                 <meta name="description" content="AI & RAG engineer based in Nairobi, Kenya — career background, experience, and technical stack." />
                 <link rel="canonical" href="https://mills.co.ke/about" />
             </Helmet>

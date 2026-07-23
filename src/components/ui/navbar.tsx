@@ -63,7 +63,7 @@ export default function Navbar() {
                     >
                         <span className="flex items-center gap-2.5">
                             <img src="/logo.svg" alt="" className="h-8 w-auto" />
-                            <span className="hidden sm:inline">Mike Mills</span>
+                            <span className="hidden sm:inline">Mills</span>
                         </span>
                     </Link>
 
@@ -103,7 +103,7 @@ export default function Navbar() {
                     >
                         <span className="flex items-center gap-2.5">
                             <img src="/logo.svg" alt="" className="h-8 w-auto" />
-                            Mike Mills
+                            Mills
                         </span>
                     </Link>
                     <button

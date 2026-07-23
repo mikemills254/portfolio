@@ -8,7 +8,7 @@ export default function NotFound() {
     return (
         <>
             <Helmet>
-                <title>Page Not Found | Mike Mills</title>
+                <title>Page Not Found | Mills</title>
             </Helmet>
             <main className="min-h-dvh w-full flex flex-col relative" data-testid="page-not-found">
                 <Navbar />
