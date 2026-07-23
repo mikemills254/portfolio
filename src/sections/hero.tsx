@@ -2,19 +2,19 @@ import { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const CYCLING_WORDS = ['ships.', 'scales.', 'compounds.', 'lasts.'];
+const CYCLING_WORDS = ['ship.', 'hold up in production.', 'actually get used.', 'scale.'];
 
 const MARQUEE_ITEMS = [
-    'Full Stack Engineering',
-    'Enterprise AI',
-    'Cloud Architecture',
-    'RAG Systems',
-    'Technical Leadership',
-    'System Design',
-    'Team Scaling',
-    'AI Integration',
-    'Platform Engineering',
-    'Distributed Systems',
+    'TypeScript',
+    'Node.js',
+    'LangChain',
+    'Pinecone',
+    'OpenAI / GPT-4',
+    'PostgreSQL',
+    'AWS',
+    'Docker',
+    'React',
+    'Redis',
 ];
 
 function MarqueeTrack() {
@@ -88,14 +88,14 @@ export default function Hero() {
                 className="text-6xl sm:text-7xl md:text-8xl font-bold leading-[1.04] tracking-tight mb-0"
                 data-testid="text-hero-headline"
             >
-                Software that
+                AI systems that
             </h1>
 
             {/* Animated cycling word */}
             <div
                 className="relative h-[1.1em] overflow-hidden text-6xl sm:text-7xl md:text-8xl font-bold leading-[1.04] tracking-tight text-primary"
                 aria-live="polite"
-                aria-label={`Software that ${CYCLING_WORDS[wordIndex]}`}
+                aria-label={`AI systems that ${CYCLING_WORDS[wordIndex]}`}
             >
                 <AnimatePresence mode="popLayout" initial={false}>
                 <motion.span
@@ -120,7 +120,7 @@ export default function Hero() {
             className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto mt-8 mb-10"
             data-testid="text-hero-subhead"
             >
-            Full Stack and AI consulting for teams with hard problems and zero tolerance for slow.
+            RAG and agentic AI engineering for teams who need it to work in production, not just in a demo. Based in Nairobi, working across East Africa and remote.
             </motion.p>
 
             {/* CTAs */}

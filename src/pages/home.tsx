@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Contact from '../sections/contact';
+import Engagement from '../sections/engagement';
 import Expertise from '../sections/expertise';
 import Hero from '../sections/hero';
 import Testimonials from '../sections/testimonials';
@@ -11,8 +12,8 @@ export default function Home() {
     return (
         <>
             <Helmet>
-                <title>Mike Mills | Full Stack Developer & AI Engineer</title>
-                <meta name="description" content="Portfolio of Mike Mills Ngaira, a Full Stack Developer and AI Engineer specializing in enterprise AI, scalable web applications, and technical leadership." />
+                <title>Mike Mills | AI & RAG Engineer — Nairobi, Kenya</title>
+                <meta name="description" content="AI & RAG engineer based in Nairobi, Kenya, building production Retrieval-Augmented Generation pipelines, LLM integrations, and full-stack systems for teams across East Africa and remote." />
                 <link rel="canonical" href="https://mills.co.ke/" />
             </Helmet>
             <main className="min-h-dvh w-full flex flex-col relative" data-testid="page-home">
@@ -23,6 +24,7 @@ export default function Home() {
                     <Work />
                     <Expertise />
                     <Testimonials />
+                    <Engagement />
                     <Contact />
                 </div>
 
