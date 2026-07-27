@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, Network } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 const CYCLING_WORDS = ['ship.', 'hold up in production.', 'actually get used.', 'scale.'];
@@ -23,21 +23,21 @@ function FadedGradientBackground() {
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 bg-background">
             {/* A large, very soft, faded gradient glow */}
-            <div 
+            <div
                 className="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[100vw] h-[80vh] opacity-30 blur-[100px]"
                 style={{
                     background: 'radial-gradient(ellipse at top, hsl(var(--primary)) 0%, transparent 70%)'
                 }}
             />
-            
+
             {/* A secondary subtle glow for balance */}
-            <div 
+            <div
                 className="absolute bottom-[-10%] -left-[10%] w-[50vw] h-[50vh] opacity-10 blur-[80px]"
                 style={{
                     background: 'radial-gradient(circle at center, hsl(var(--primary)) 0%, transparent 70%)'
                 }}
             />
-            
+
             {/* Vignette mask to fade the edges smoothly */}
             <div
                 className="absolute inset-0"
