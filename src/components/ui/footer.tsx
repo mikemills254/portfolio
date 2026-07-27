@@ -31,7 +31,6 @@ export default function Footer() {
                 </div>
 
                 <div className="flex items-center gap-6">
-                    <Link to="/about" className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="footer-link-about">About</Link>
                     <button onClick={() => handleNavigation('work')} className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="footer-link-work">Work</button>
                     <button onClick={() => handleNavigation('expertise')} className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="footer-link-expertise">Expertise</button>
                     <Link to="/services" className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="footer-link-services">Services</Link>

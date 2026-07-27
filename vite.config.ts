@@ -12,7 +12,6 @@ export default defineConfig({
     Sitemap({
       hostname: 'https://mills.co.ke',
       dynamicRoutes: [
-        '/about',
         '/services',
         '/work/civic-rag-assistant',
         '/work/business-management-platform',

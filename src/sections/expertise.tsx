@@ -6,8 +6,8 @@ const areas = [
         description: "Production RAG pipelines end to end — document ingestion, chunking, embedding, vector retrieval, and guardrails — not just a prototype that works in a demo."
     },
     {
-        title: "AI Application Development",
-        description: "LLM integration, prompt engineering, and model tuning built for production: reliability, latency, and cost economics, not just capability."
+        title: "Agentic AI & LLM Integration",
+        description: "Tool-calling agents, multi-step reasoning, and LLM integrations built for production: reliability, latency, and cost economics, not just capability."
     },
     {
         title: "Backend & API Development",

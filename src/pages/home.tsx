@@ -3,8 +3,6 @@ import Contact from '../sections/contact';
 import Engagement from '../sections/engagement';
 import Expertise from '../sections/expertise';
 import Hero from '../sections/hero';
-import Testimonials from '../sections/testimonials';
-import Work from '../sections/work';
 import Footer from '../components/ui/footer';
 import Navbar from '../components/ui/navbar';
 
@@ -21,9 +19,7 @@ export default function Home() {
 
                 <div className="grow">
                     <Hero />
-                    <Work />
                     <Expertise />
-                    <Testimonials />
                     <Engagement />
                     <Contact />
                 </div>
