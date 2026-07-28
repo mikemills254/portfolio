@@ -1,0 +1,14 @@
+{
+  "name": "Mills | AI & RAG Engineer",
+  "short_name": "Mills",
+  "theme_color": "#2A3731",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
