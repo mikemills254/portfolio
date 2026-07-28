@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Seo } from '../components/seo';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { getCaseStudy } from '../data/case-studies';
@@ -27,11 +27,35 @@ export default function CaseStudy() {
 
     return (
         <>
-            <Helmet>
-                <title>{caseStudy.title} | Mills</title>
-                <meta name="description" content={caseStudy.summary} />
-                <link rel="canonical" href={`https://mills.co.ke/work/${caseStudy.slug}`} />
-            </Helmet>
+            <Seo
+                title={`${caseStudy.title} | Mills`}
+                description={caseStudy.summary}
+                canonical={`https://mills.co.ke/work/${caseStudy.slug}`}
+                type="article"
+            >
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'BreadcrumbList',
+                        itemListElement: [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mills.co.ke/' },
+                            { '@type': 'ListItem', position: 2, name: 'Portfolio', item: 'https://mills.co.ke/portfolio' },
+                            { '@type': 'ListItem', position: 3, name: caseStudy.title, item: `https://mills.co.ke/work/${caseStudy.slug}` },
+                        ],
+                    })}
+                </script>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'CreativeWork',
+                        name: caseStudy.title,
+                        description: caseStudy.summary,
+                        url: `https://mills.co.ke/work/${caseStudy.slug}`,
+                        keywords: caseStudy.stack.join(', '),
+                        creator: { '@type': 'Person', name: 'Mills' },
+                    })}
+                </script>
+            </Seo>
             <main className="min-h-dvh w-full flex flex-col relative" data-testid="page-case-study">
                 <Navbar />
 

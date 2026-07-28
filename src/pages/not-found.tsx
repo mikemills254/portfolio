@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Seo } from '../components/seo';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Footer from '../components/ui/footer';
@@ -7,9 +7,11 @@ import Navbar from '../components/ui/navbar';
 export default function NotFound() {
     return (
         <>
-            <Helmet>
-                <title>Page Not Found | Mills</title>
-            </Helmet>
+            <Seo
+                title="Page Not Found | Mills"
+                description="The page you're looking for may have moved or never existed."
+                noindex
+            />
             <main className="min-h-dvh w-full flex flex-col relative" data-testid="page-not-found">
                 <Navbar />
 

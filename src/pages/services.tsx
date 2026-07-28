@@ -1,5 +1,5 @@
 import { useState, useEffect, type CSSProperties } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Seo } from '../components/seo';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
@@ -207,11 +207,22 @@ export default function Services() {
 
     return (
         <>
-            <Helmet>
-                <title>Services | AI & RAG Engineering</title>
-                <meta name="description" content="Project-based and retainer engagements for RAG pipelines, AI feature integration, and full-stack systems." />
-                <link rel="canonical" href="https://mills.co.ke/services" />
-            </Helmet>
+            <Seo
+                title="Services | AI & RAG Engineering"
+                description="Project-based and retainer engagements for RAG pipelines, AI feature integration, and full-stack systems."
+                canonical="https://mills.co.ke/services"
+            >
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'BreadcrumbList',
+                        itemListElement: [
+                            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mills.co.ke/' },
+                            { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://mills.co.ke/services' },
+                        ],
+                    })}
+                </script>
+            </Seo>
             <main className="min-h-dvh w-full flex flex-col relative bg-background overflow-hidden">
                 <Navbar />
                 <NetworkBackground />

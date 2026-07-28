@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import Sitemap from 'vite-plugin-sitemap'
+import { caseStudies } from './src/data/case-studies.ts'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -13,9 +14,8 @@ export default defineConfig({
       hostname: 'https://mills.co.ke',
       dynamicRoutes: [
         '/services',
-        '/work/civic-rag-assistant',
-        '/work/business-management-platform',
-        '/work/pharmacy-inventory-system',
+        '/portfolio',
+        ...caseStudies.map((c) => `/work/${c.slug}`),
       ],
     })
   ],

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Seo } from '../components/seo';
 import Contact from '../sections/contact';
 import Engagement from '../sections/engagement';
 import Expertise from '../sections/expertise';
@@ -9,11 +9,11 @@ import Navbar from '../components/ui/navbar';
 export default function Home() {
     return (
         <>
-            <Helmet>
-                <title>Mills | AI & RAG Engineer — Nairobi, Kenya</title>
-                <meta name="description" content="AI & RAG engineer based in Nairobi, Kenya, building production Retrieval-Augmented Generation pipelines, LLM integrations, and full-stack systems for teams across East Africa and remote." />
-                <link rel="canonical" href="https://mills.co.ke/" />
-            </Helmet>
+            <Seo
+                title="Mills | AI & RAG Engineer — Nairobi, Kenya"
+                description="AI & RAG engineer based in Nairobi, Kenya, building production Retrieval-Augmented Generation pipelines, LLM integrations, and full-stack systems for teams across East Africa and remote."
+                canonical="https://mills.co.ke/"
+            />
             <main className="min-h-dvh w-full flex flex-col relative" data-testid="page-home">
                 <Navbar />
 
