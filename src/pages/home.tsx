@@ -5,6 +5,7 @@ import Expertise from '../sections/expertise';
 import Hero from '../sections/hero';
 import Footer from '../components/ui/footer';
 import Navbar from '../components/ui/navbar';
+import Work from '@/sections/work';
 
 export default function Home() {
     return (
@@ -19,6 +20,7 @@ export default function Home() {
 
                 <div className="grow">
                     <Hero />
+                    <Work/>
                     <Expertise />
                     <Engagement />
                     <Contact />
