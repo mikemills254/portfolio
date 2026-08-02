@@ -155,7 +155,7 @@ export default function Hero() {
                         className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground text-sm font-bold rounded-full hover:scale-105 transition-transform flex items-center justify-center gap-2 group"
                         data-testid="button-hero-work"
                     >
-                        View My Work
+                        View Our Work
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                     <button
