@@ -6,6 +6,7 @@ import {
     SiDocker,
     SiMongodb,
     SiPostgresql,
+    SiPwa,
     SiReact,
 } from 'react-icons/si';
 import { TbBrandAws, TbBrandOpenai, TbDatabase } from 'react-icons/tb';
@@ -21,4 +22,5 @@ export const TECH_ICONS: Record<string, IconType> = {
     MongoDB: SiMongodb,
     PostgreSQL: SiPostgresql,
     React: SiReact,
+    PWA: SiPwa,
 };

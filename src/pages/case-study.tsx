@@ -1,5 +1,5 @@
 import { Seo } from '../components/seo';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { getCaseStudy } from '../data/case-studies';
 import { ArchitectureDiagram } from '../components/case-study/architecture-diagram';
@@ -20,6 +20,7 @@ export default function CaseStudy() {
     const { slug } = useParams<{ slug: string }>();
     const navigate = useNavigate();
     const caseStudy = slug ? getCaseStudy(slug) : undefined;
+    const relatedCaseStudy = caseStudy?.relatedSlug ? getCaseStudy(caseStudy.relatedSlug) : undefined;
 
     if (!caseStudy) {
         return <NotFound />;
@@ -120,6 +121,22 @@ export default function CaseStudy() {
                             <p className="leading-relaxed">{caseStudy.outcome}</p>
                         </div>
                     </section>
+
+                    {relatedCaseStudy && (
+                        <section className="px-6 md:px-12 max-w-4xl mx-auto pb-24">
+                            <Link
+                                to={`/work/${relatedCaseStudy.slug}`}
+                                className="group flex items-center justify-between gap-6 border border-border rounded p-6 hover:border-primary/50 transition-colors"
+                                data-testid="link-related-case-study"
+                            >
+                                <div>
+                                    <p className="text-xs uppercase tracking-[0.2em] font-semibold text-primary mb-2">Related case study</p>
+                                    <p className="font-bold">{relatedCaseStudy.title}</p>
+                                </div>
+                                <ArrowRight className="w-5 h-5 text-muted-foreground shrink-0 group-hover:translate-x-1 group-hover:text-primary transition-all" />
+                            </Link>
+                        </section>
+                    )}
 
                     <section className="px-6 md:px-12 max-w-4xl mx-auto pb-24 md:pb-32">
                         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-border pt-12">

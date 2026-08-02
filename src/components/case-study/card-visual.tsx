@@ -3,13 +3,17 @@ import { motion } from 'framer-motion';
 import {
     AlertTriangle,
     CalendarClock,
+    CheckCircle2,
+    Download,
     FileText,
+    Landmark,
     type LucideIcon,
     MessageCircle,
     Network,
     Pill,
     Receipt,
     RefreshCw,
+    Smartphone,
 } from 'lucide-react';
 
 interface CardVisualProps {
@@ -50,6 +54,46 @@ function FlowConnector({ icon: Icon }: { icon: LucideIcon }) {
             </div>
             <span className="w-3 h-px bg-border" />
         </div>
+    );
+}
+
+function BajetiVisual({ className }: { className?: string }) {
+    const allocations = [8, 14, 10, 18, 6];
+    return (
+        <VisualFrame className={className}>
+            <div className="flex items-center gap-3">
+                <div className="rounded-sm border border-border bg-card p-2.5 shadow-sm shrink-0 flex flex-col items-center gap-2">
+                    <Landmark className="w-4 h-4 text-primary" />
+                    <div className="flex items-end gap-1">
+                        {allocations.map((h, i) => (
+                            <div key={i} className="w-1.5 bg-primary/60 rounded-t-sm" style={{ height: `${h * 2}px` }} />
+                        ))}
+                    </div>
+                </div>
+
+                <FlowConnector icon={Smartphone} />
+
+                <div className="relative bg-primary text-primary-foreground rounded-xl px-3.5 py-3 shadow-sm flex flex-col gap-1.5">
+                    <div className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-card border border-border flex items-center justify-center shadow-sm">
+                        <Download className="w-2.5 h-2.5 text-primary" />
+                    </div>
+                    <div className="flex items-end gap-1 h-5">
+                        <div className="w-1.5 rounded-t-sm bg-primary-foreground/70 h-2.5" />
+                        <div className="w-1.5 rounded-t-sm bg-primary-foreground/70 h-4" />
+                        <div className="w-1.5 rounded-t-sm bg-primary-foreground/40 h-2" />
+                        <div className="w-1.5 rounded-t-sm bg-primary-foreground/70 h-5" />
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3 h-3" />
+                        <div className="h-1 bg-primary-foreground/60 rounded-full w-8" />
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                        <div className="w-3 h-3 rounded-full border border-primary-foreground/60" />
+                        <div className="h-1 bg-primary-foreground/60 rounded-full w-6" />
+                    </div>
+                </div>
+            </div>
+        </VisualFrame>
     );
 }
 
@@ -146,6 +190,7 @@ function PharmacyVisual({ className }: { className?: string }) {
 }
 
 const VISUALS: Record<string, (props: { className?: string }) => ReactElement> = {
+    'sauti-ya-bajeti': BajetiVisual,
     'civic-rag-assistant': CivicRagVisual,
     'business-management-platform': BusinessPlatformVisual,
     'pharmacy-inventory-system': PharmacyVisual,

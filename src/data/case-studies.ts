@@ -15,15 +15,65 @@ export interface CaseStudy {
     stack: string[];
     /** Architecture flow: each entry is a stage; a stage can have multiple parallel nodes. */
     diagram: string[][];
+    /** Slug of a related case study to link to, e.g. the underlying platform or a sibling product. */
+    relatedSlug?: string;
 }
 
 export const caseStudies: CaseStudy[] = [
+    {
+        slug: 'sauti-ya-bajeti',
+        category: 'Public Finance · AI/PWA',
+        title: 'Sauti ya Bajeti, from a WhatsApp pilot to a budget PWA',
+        summary:
+            'Built the AI engine and, as adoption grew, the installable web app behind Sauti ya Bajeti ("Voice of the Budget") for the Institute of Public Finance. It launched as a WhatsApp chatbot answering plain-language budget questions, then evolved into a full progressive web app — installable to the home screen, usable offline, with proper budget dashboards layered on top of the original conversational AI and participatory-budgeting polls. Recognized by the Open Government Partnership as part of Machakos County\'s AI-powered, inclusive-governance budget platform.',
+        role: 'AI & Full-Stack Engineer — built the original conversational query engine, then led the product\'s evolution into an installable PWA with a React frontend, offline support, and budget dashboards.',
+        problem:
+            'County and national budgets in Kenya are public by law, but "public" mostly meant dense PDFs and physical hearings — hundreds of pages of line-item allocations that few citizens have the time, access, or technical background to parse. Public participation forums require travel and time off work, which quietly locks out the people budgets affect most. A WhatsApp-only chatbot lowered that barrier for quick questions, but couldn\'t hold a persistent, richer experience — saved history, dashboards, offline access — so as adoption grew, the product needed to grow beyond a chat window without losing the zero-install, plain-language experience that made it work in the first place.',
+        approach: [
+            {
+                title: 'Budget data as a knowledge base',
+                description:
+                    'Structured county and national budget documents — allocations, sector breakdowns, audit reports — into a queryable knowledge base, so every answer stays grounded in the actual gazetted figures instead of a model\'s guess.',
+            },
+            {
+                title: 'WhatsApp pilot: a conversational query engine',
+                description:
+                    'Shipped the first version as a WhatsApp chatbot so a citizen could ask "how much did Machakos budget for health this year?" in plain language and get an instant, sector-specific answer — no app download, no onboarding.',
+            },
+            {
+                title: 'Evolving into an installable PWA',
+                description:
+                    'As usage outgrew what a chat window could hold, rebuilt the experience as a progressive web app — installable to the home screen and usable offline — so citizens get a persistent, app-like experience without an app store.',
+            },
+            {
+                title: 'Participatory budgeting, now with visuals',
+                description:
+                    'Carried the polls and surveys from the WhatsApp pilot into the PWA and paired them with proper budget dashboards and sector-by-sector charts that a chat interface alone couldn\'t show.',
+            },
+            {
+                title: 'Civic education prompts',
+                description:
+                    'Layered in guided content that teaches the core principles of public finance — transparency, accountability, participation, efficiency, effectiveness, equity — so the app builds lasting budget literacy, not just one-off answers.',
+            },
+        ],
+        outcome:
+            'Sauti ya Bajeti grew from a WhatsApp pilot into an installable PWA that gives citizens a persistent, offline-capable way to track budgets and weigh in on spending priorities — still with no app store and no heavy install. It was featured by the Open Government Partnership as part of Machakos County\'s AI-powered, inclusive-governance budget platform, and cited by CIPESA as an example of AI expanding citizens\' access to budget information in Kenya. The underlying query pipeline was later generalized into a reusable internal library, detailed in the case study below.',
+        stack: ['Node.js', 'TypeScript', 'React', 'LangChain', 'OpenAI / GPT-4', 'PWA'],
+        diagram: [
+            ['Gazetted Budget Documents'],
+            ['Structured Knowledge Base'],
+            ['Guarded Query Engine'],
+            ['Installable PWA'],
+            ['Budget Dashboards', 'Participatory Polls'],
+        ],
+        relatedSlug: 'civic-rag-assistant',
+    },
     {
         slug: 'civic-rag-assistant',
         category: 'Civic Tech · RAG',
         title: 'Civic RAG assistant, built once, shipped three times',
         summary:
-            'Designed and built a RAG pipeline — document ingestion, chunking, embedding, vector retrieval, guarded LLM response — that powers WhatsApp assistants answering plain-language public finance and constitutional-law questions from a structured knowledge base, no app download required. Standardized the pipeline into a reusable internal library, cutting build time for each new civic product by roughly 50%.',
+            'Designed and built the reusable RAG pipeline — document ingestion, chunking, embedding, vector retrieval, guarded LLM response — behind Sauti ya Bajeti and two other WhatsApp assistants answering plain-language public finance and constitutional-law questions from a structured knowledge base, no app download required. Standardized the pipeline into a shared internal library, cutting build time for each new civic product by roughly 50%.',
         role: 'AI & RAG Engineer — designed and built the pipeline, established production guardrails, and standardized it into a reusable internal library.',
         problem:
             'Citizens and officials needed a way to ask plain-language questions about public finance and constitutional law and get answers grounded in dense official documents — budget frameworks, audit guidelines, legal text — without reading them directly or installing a dedicated app.',
