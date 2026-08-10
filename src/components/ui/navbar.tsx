@@ -1,129 +1,129 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import React from 'react';
+import { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Menu, X } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+
+const LINKS = [
+    { label: 'Work', id: 'work' },
+    { label: 'Expertise', id: 'expertise' },
+    { label: 'Services', id: 'services' },
+]
 
 export default function Navbar() {
-    const [scrolled, setScrolled] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const navigate = useNavigate();
-    const location = useLocation();
+    const [scrolled, setScrolled] = useState(false)
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+    const location = useLocation()
+    const navigate = useNavigate()
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+        const onScroll = () => setScrolled(window.scrollY > 24)
+        onScroll()
+        window.addEventListener('scroll', onScroll, { passive: true })
+        return () => window.removeEventListener('scroll', onScroll)
+    }, [])
 
-    // Prevent scrolling when mobile menu is open
+    // Close mobile menu on page/hash change
     useEffect(() => {
-        if (isMobileMenuOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, [isMobileMenuOpen]);
+        setIsMobileMenuOpen(false)
+    }, [location])
 
-    const handleNavigation = (id: string) => {
-        setIsMobileMenuOpen(false);
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        e.preventDefault()
+        setIsMobileMenuOpen(false)
         if (location.pathname === '/') {
-            const el = document.getElementById(id);
+            const el = document.getElementById(id)
             if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
+                el.scrollIntoView({ behavior: 'smooth' })
             }
         } else {
-            navigate('/');
-            setTimeout(() => {
-                const el = document.getElementById(id);
-                if (el) {
-                    el.scrollIntoView({ behavior: 'smooth' });
-                }
-            }, 100);
+            navigate(`/#${id}`)
         }
-    };
+    }
 
     return (
-        <React.Fragment>
+        <div className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
             <nav
-                className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${scrolled ? 'bg-background/90 backdrop-blur-md border-b border-border/50 py-4' : 'bg-transparent py-6'
+                className={`relative flex w-full max-w-6xl items-center justify-between rounded-full px-5 py-3 transition-all duration-300 md:px-6 ${scrolled
+                    ? 'border border-border bg-background/80 shadow-sm backdrop-blur-md'
+                    : 'border border-transparent'
                     }`}
-                data-testid="nav-main"
             >
-                <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+                {/* Logo */}
+                <Link to="/" className="flex items-baseline gap-1.5 z-50">
+                    <span className="text-xl font-semibold tracking-tight">Mills</span>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                        AI/RAG
+                    </span>
+                </Link>
+
+                {/* Desktop Links */}
+                <div className="hidden items-center gap-8 md:flex">
+                    {LINKS.map((link) => (
+                        <a
+                            key={link.id}
+                            href={`/#${link.id}`}
+                            onClick={(e) => handleNavClick(e, link.id)}
+                            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        >
+                            {link.label}
+                        </a>
+                    ))}
+                </div>
+
+                {/* Desktop and Mobile CTAs */}
+                <div className="flex items-center gap-2 z-50">
                     <Link
-                        to="/"
-                        className="text-lg font-bold tracking-tight hover:opacity-70 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
-                        data-testid="nav-logo"
-                        aria-label="Back to top"
+                        to="/contact"
+                        className="hidden sm:inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
                     >
-                        <span className="flex items-center gap-2.5">
-                            <img src="/logo.svg" alt="" className="h-8 w-auto" />
-                            <span className="hidden sm:inline">Mills</span>
-                        </span>
+                        Get in touch
                     </Link>
 
-                    {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center gap-8">
-                        <button onClick={() => handleNavigation('work')} className="text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="nav-link-work">Work</button>
-                        <button onClick={() => handleNavigation('expertise')} className="text-sm cursor-pointer font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="nav-link-expertise">Expertise</button>
-                        <Link to="/services" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" data-testid="nav-link-services">Services</Link>
-                        <button onClick={() => handleNavigation('contact')} className="text-sm cursor-pointer font-medium px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors" data-testid="nav-cta-contact">
-                            Get In Touch
-                        </button>
-                    </div>
-
-                    {/* Mobile Menu Toggle (Open) */}
+                    {/* Hamburger Button */}
                     <button
-                        className="md:hidden relative p-2 -mr-2 text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
-                        onClick={() => setIsMobileMenuOpen(true)}
-                        aria-label="Open Menu"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        aria-label="Toggle mobile menu"
+                        className="rounded-full p-2.5 text-foreground hover:bg-foreground/5 md:hidden cursor-pointer"
                     >
-                        <Menu size={24} />
+                        {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                     </button>
                 </div>
+
+                {/* Mobile Dropdown Menu Card */}
+                <AnimatePresence>
+                    {isMobileMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -15, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -15, scale: 0.95 }}
+                            transition={{ duration: 0.2, ease: 'easeOut' }}
+                            className="absolute top-full left-0 right-0 mt-3 flex flex-col gap-4 rounded-3xl border border-border bg-background/95 p-6 shadow-lg backdrop-blur-md md:hidden"
+                        >
+                            <div className="flex flex-col gap-4">
+                                {LINKS.map((link) => (
+                                    <a
+                                        key={link.id}
+                                        href={`/#${link.id}`}
+                                        onClick={(e) => handleNavClick(e, link.id)}
+                                        className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground py-1"
+                                    >
+                                        {link.label}
+                                    </a>
+                                ))}
+                            </div>
+                            
+                            <hr className="border-border my-1" />
+
+                            <Link
+                                to="/contact"
+                                className="inline-flex w-full items-center justify-center rounded-full bg-primary py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                            >
+                                Get in touch
+                            </Link>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </nav>
-
-            {/* Mobile Menu Full-Screen Overlay */}
-            <div
-                className={`fixed inset-0 bg-background z-50 flex flex-col transition-transform duration-300 ease-in-out md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-                    }`}
-            >
-                {/* Mobile Menu Header (Matches Default Navbar) */}
-                <div className={`flex items-center justify-between px-6 transition-all duration-300 ${scrolled ? 'py-4 border-b border-border/50' : 'py-6'}`}>
-                    <Link
-                        to="/"
-                        className="text-lg font-bold tracking-tight hover:opacity-70 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                        <span className="flex items-center gap-2.5">
-                            <img src="/logo.svg" alt="" className="h-8 w-auto" />
-                            Mills
-                        </span>
-                    </Link>
-                    <button
-                        className="p-2 -mr-2 text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        aria-label="Close Menu"
-                    >
-                        <X size={24} />
-                    </button>
-                </div>
-
-                {/* Mobile Menu Links */}
-                <div className="flex-1 flex flex-col justify-center items-center gap-8 pb-20">
-                    <button onClick={() => handleNavigation('work')} className="text-3xl font-bold hover:text-primary transition-colors">Work</button>
-                    <button onClick={() => handleNavigation('expertise')} className="text-3xl font-bold hover:text-primary transition-colors">Expertise</button>
-                    <Link to="/services" onClick={() => setIsMobileMenuOpen(false)} className="text-3xl font-bold hover:text-primary transition-colors">Services</Link>
-                    <button onClick={() => handleNavigation('contact')} className="text-xl font-medium px-8 py-3 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors mt-4">
-                        Get In Touch
-                    </button>
-                </div>
-            </div>
-        </React.Fragment>
-    );
+        </div>
+    )
 }

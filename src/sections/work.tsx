@@ -1,113 +1,138 @@
-import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { caseStudies } from '../data/case-studies';
-import { TechStackIcons } from '../components/case-study/tech-stack-icons';
-import { CardVisual } from '../components/case-study/card-visual';
+type Project = {
+    title: string
+    category: string
+    description: string
+    stack: string[]
+}
+
+const featured: Project = {
+    title: 'Sauti ya Bajeti, from a WhatsApp pilot to a budget PWA',
+    category: 'Public Finance · AI / PWA',
+    description:
+        'Built the AI engine and, as adoption grew, the installable web app behind Sauti ya Bajeti ("Voice of the Budget") for the Institute of Public Finance. It launched as a WhatsApp chatbot answering plain-language budget questions, then evolved into a full progressive web app — installable to the home screen, usable offline, with proper budget dashboards layered on top of the original conversational AI and participatory-budgeting polls. Recognized by the Open Government Partnership as part of Machakos County\'s AI-powered, inclusive-governance budget platform.',
+    stack: ['Node.js', 'TypeScript', 'React', 'LangChain', 'OpenAI / GPT-4', 'PWA'],
+}
+
+const projects: Project[] = [
+    {
+        title: 'Civic RAG assistant, built once, shipped three times',
+        category: 'Civic Tech · RAG',
+        description:
+            'Designed and built the reusable RAG pipeline — document ingestion, chunking, embedding, vector retrieval, guarded LLM response — behind Sauti ya Bajeti and two other WhatsApp assistants answering plain-language public finance and constitutional-law questions from a structured knowledge base, no app download required. Standardized the pipeline into a shared internal library, cutting build time for each new civic product by roughly 50%.',
+        stack: [
+            'Node.js',
+            'TypeScript',
+            'LangChain',
+            'Pinecone',
+            'OpenAI / GPT-4',
+            'AWS',
+        ],
+    },
+    {
+        title: 'Business management platform for service businesses',
+        category: 'SaaS · Backend',
+        description:
+            'Built and maintained the backend for a POS and business-management platform — booking, staff profiles, inventory, and transaction processing — with role-based access control and integrated accounting sync for automated financial tracking.',
+        stack: ['Node.js', 'TypeScript', 'MongoDB', 'Docker'],
+    },
+    {
+        title: 'Hospital pharmacy inventory system',
+        category: 'Healthcare · Backend',
+        description:
+            'Built a web portal for hospital medicine inventory, prescription dispensing, and procurement — real-time stock monitoring and expiry-date tracking to support regulatory compliance.',
+        stack: ['Node.js', 'TypeScript', 'PostgreSQL', 'React'],
+    },
+]
+
+function StackTags({ items }: { items: string[] }) {
+    return (
+        <ul className="flex flex-wrap gap-2">
+            {items.map((item) => (
+                <li
+                    key={item}
+                    className="rounded-full border border-border bg-background px-3 py-1 font-mono text-xs text-muted-foreground"
+                >
+                    {item}
+                </li>
+            ))}
+        </ul>
+    )
+}
 
 export default function Work() {
-    const [featured, ...rest] = caseStudies;
-
     return (
-        <section id="work" className="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto" data-testid="section-work">
-            <div>
-                <motion.div 
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 60, damping: 20 }}
-                    className="mb-16 text-center md:text-left"
-                >
-                    <h2 className="text-sm uppercase tracking-[0.2em] font-bold text-primary/80 mb-4" data-testid="text-work-label">Selected Work</h2>
-                    <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight" data-testid="text-work-headline">Outcomes, not just output.</h3>
-                </motion.div>
+        <section id="work" className="border-b border-border py-28 md:py-36">
+            <div className="mx-auto max-w-6xl px-6">
+                <div className="flex items-center gap-3">
+                    <span className="h-px w-8 bg-foreground" />
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                        Selected Work
+                    </span>
+                </div>
+                <h2 className="mt-6 max-w-3xl text-balance text-4xl font-medium leading-[1.02] tracking-tight md:text-6xl">
+                    Outcomes,
+                    <br />
+                    not just output.
+                </h2>
 
-                {/* Featured RAG / agentic case study */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 60, damping: 20, delay: 0.1 }}
-                >
-                    <Link
-                        to={`/work/${featured.slug}`}
-                        className="group relative bg-card/20 backdrop-blur-md rounded-[2rem] border border-border/50 p-8 md:p-10 flex flex-col md:flex-row gap-8 hover:border-primary/50 transition-all duration-500 mb-12 overflow-hidden block"
-                        data-testid="card-work-featured"
-                    >
-                        {/* Glow effect on hover */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                {/* Featured — big numbered row */}
+                <article className="mt-20 grid gap-8 border-t border-border pt-10 md:grid-cols-[auto_1fr] md:gap-16">
+                    <span className="font-mono text-sm text-muted-foreground">01</span>
+                    <div className="grid gap-8 md:grid-cols-2 md:gap-16">
+                        <div>
+                            <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                                {featured.category}
+                            </p>
+                            <h3 className="mt-4 text-balance text-3xl font-medium leading-tight tracking-tight md:text-4xl">
+                                {featured.title}
+                            </h3>
+                        </div>
+                        <div className="flex flex-col justify-between gap-6">
+                            <p className="text-pretty leading-relaxed text-muted-foreground">
+                                {featured.description}
+                            </p>
+                            <StackTags items={featured.stack} />
+                        </div>
+                    </div>
+                </article>
 
-                        <CardVisual
-                            slug={featured.slug}
-                            className="w-full md:w-80 h-56 md:h-auto shrink-0 transition-transform duration-500 group-hover:scale-105 rounded-2xl relative z-10"
-                        />
-                        <div className="flex flex-col flex-1 relative z-10">
-                            <div className="mb-6 flex items-center justify-between">
-                                <span className="text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full">{featured.category}</span>
-                                <div className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors duration-300">
-                                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
+                {/* Secondary projects as numbered rows */}
+                <div className="mt-20 flex items-center gap-3">
+                    <span className="h-px w-8 bg-border" />
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                        Other engineering work
+                    </span>
+                </div>
+
+                <div className="mt-8">
+                    {projects.map((project, i) => (
+                        <article
+                            key={project.title}
+                            className="grid gap-6 border-t border-border py-10 md:grid-cols-[auto_1fr] md:gap-16"
+                        >
+                            <span className="font-mono text-sm text-muted-foreground">
+                                {String(i + 2).padStart(2, '0')}
+                            </span>
+                            <div className="grid gap-6 md:grid-cols-[1fr_1.2fr] md:gap-16">
+                                <div>
+                                    <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                                        {project.category}
+                                    </p>
+                                    <h3 className="mt-4 text-balance text-2xl font-medium leading-snug tracking-tight">
+                                        {project.title}
+                                    </h3>
+                                </div>
+                                <div className="flex flex-col gap-5">
+                                    <p className="text-pretty leading-relaxed text-muted-foreground">
+                                        {project.description}
+                                    </p>
+                                    <StackTags items={project.stack} />
                                 </div>
                             </div>
-                            <h4 className="text-3xl font-bold mb-4">{featured.title}</h4>
-                            <p className="text-muted-foreground mb-8 text-base leading-relaxed">
-                                {featured.summary}
-                            </p>
-                            <div className="pt-6 border-t border-border/50 mt-auto">
-                                <TechStackIcons stack={featured.stack} />
-                            </div>
-                        </div>
-                    </Link>
-                </motion.div>
-
-                {/* Other engineering work */}
-                {rest.length > 0 && (
-                    <>
-                        <motion.p 
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-8 text-center md:text-left"
-                        >
-                            Other Engineering Work
-                        </motion.p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {rest.map((c, i) => (
-                                <motion.div
-                                    key={c.slug}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ type: "spring", stiffness: 60, damping: 20, delay: i * 0.1 }}
-                                >
-                                    <Link
-                                        to={`/work/${c.slug}`}
-                                        className="group relative bg-card/20 backdrop-blur-md rounded-3xl border border-border/50 p-8 flex flex-col hover:border-primary/50 transition-all duration-500 h-full overflow-hidden block"
-                                        data-testid={`card-work-${i}`}
-                                    >
-                                        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                                        <CardVisual slug={c.slug} className="h-40 mb-8 transition-transform duration-500 group-hover:scale-105 rounded-xl relative z-10" />
-
-                                        <div className="mb-6 flex items-center justify-between relative z-10">
-                                            <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">{c.category}</span>
-                                            <div className="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-colors duration-300">
-                                                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
-                                            </div>
-                                        </div>
-                                        <h4 className="text-xl font-bold mb-3 relative z-10">{c.title}</h4>
-                                        <p className="text-muted-foreground mb-8 text-sm leading-relaxed grow relative z-10">
-                                            {c.summary}
-                                        </p>
-                                        <div className="pt-6 border-t border-border/50 mt-auto relative z-10">
-                                            <TechStackIcons stack={c.stack} />
-                                        </div>
-                                    </Link>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </>
-                )}
+                        </article>
+                    ))}
+                </div>
             </div>
         </section>
-    );
+    )
 }

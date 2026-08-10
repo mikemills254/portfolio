@@ -1,70 +1,126 @@
-import { Link } from 'react-router-dom';
-import { useFadeIn } from '../hooks/use-fade-in';
-import { ArrowRight, Check } from 'lucide-react';
+import { Check } from 'lucide-react'
 
-const tiers = [
+const models = [
     {
-        title: "Project",
-        description: "Fixed scope, fixed price. A RAG pipeline build, an AI feature integration, a backend system, or a pre-launch audit of an existing AI system.",
-        points: [
-            "RAG pipeline design & build",
-            "LLM / AI feature integration",
-            "Backend systems & APIs",
-            "Pre-launch AI system audit",
+        name: 'Project',
+        marker: 'I',
+        tagline: 'Fixed scope, fixed price.',
+        description:
+            'A RAG pipeline build, an AI feature integration, a backend system, or a pre-launch audit of an existing AI system.',
+        items: [
+            'RAG pipeline design & build',
+            'LLM / AI feature integration',
+            'Backend systems & APIs',
+            'Pre-launch AI system audit',
         ],
+        featured: false,
     },
     {
-        title: "Retainer",
-        description: "An ongoing monthly engagement for teams shipping continuously, including technical oversight and mentorship for junior engineers.",
-        points: [
-            "Continuous feature development",
-            "Architecture & code review",
-            "Technical mentorship",
-            "Priority turnaround",
+        name: 'Retainer',
+        marker: 'II',
+        tagline: 'Ongoing monthly engagement.',
+        description:
+            'For teams shipping continuously, including technical oversight and mentorship for junior engineers.',
+        items: [
+            'Continuous feature development',
+            'Architecture & code review',
+            'Technical mentorship',
+            'Priority turnaround',
         ],
+        featured: true,
     },
-];
+]
 
 export default function Engagement() {
-    const ref = useFadeIn();
-
     return (
-        <section id="engagement" className="py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto" data-testid="section-engagement">
-            <div ref={ref}>
-                <div className="mb-16 flex items-end justify-between flex-wrap gap-6">
-                    <div>
-                        <h2 className="text-xs uppercase tracking-[0.2em] font-semibold text-primary mb-4" data-testid="text-engagement-label">How We'd Work Together</h2>
-                        <h3 className="text-3xl md:text-4xl font-bold tracking-tight" data-testid="text-engagement-headline">Two ways to engage.</h3>
-                    </div>
-                    <Link
-                        to="/services"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-70 transition-opacity group"
-                        data-testid="link-engagement-full-details"
-                    >
-                        See full details
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
+        <section
+            id="services"
+            className="bg-dark py-28 text-dark-foreground md:py-36"
+        >
+            <div className="mx-auto max-w-6xl px-6">
+                <div className="flex items-center gap-3">
+                    <span className="h-px w-8 bg-dark-foreground" />
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-dark-muted">
+                        How We&apos;d Work Together
+                    </span>
+                </div>
+                <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                    <h2 className="text-balance text-4xl font-medium leading-[1.02] tracking-tight md:text-6xl">
+                        Two ways
+                        <br />
+                        to engage.
+                    </h2>
+                    <p className="max-w-md text-pretty leading-relaxed text-dark-muted">
+                        Pick the shape that fits the work — a bounded build with a clear
+                        deliverable, or an ongoing partnership for teams shipping
+                        continuously.
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {tiers.map((t, i) => (
-                        <div key={i} className="bg-card rounded border border-border p-8 flex flex-col" data-testid={`card-engagement-${i}`}>
-                            <h4 className="text-xl font-bold mb-3">{t.title}</h4>
-                            <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
-                                {t.description}
+                <div className="mt-16 grid gap-6 md:grid-cols-2">
+                    {models.map((model) => (
+                        <div
+                            key={model.name}
+                            className={`flex flex-col rounded-xl border p-8 md:p-10 ${model.featured
+                                ? 'border-dark-foreground/40 bg-dark-foreground text-dark'
+                                : 'border-dark-border bg-transparent text-dark-foreground'
+                                }`}
+                        >
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-baseline gap-3">
+                                    <span
+                                        className={`font-mono text-sm ${model.featured ? 'text-dark/50' : 'text-dark-muted'
+                                            }`}
+                                    >
+                                        {model.marker}
+                                    </span>
+                                    <h3 className="text-2xl font-medium tracking-tight">
+                                        {model.name}
+                                    </h3>
+                                </div>
+                                {model.featured && (
+                                    <span className="rounded-full bg-dark px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-dark-foreground">
+                                        Most popular
+                                    </span>
+                                )}
+                            </div>
+
+                            <p className="mt-4 text-sm font-medium">{model.tagline}</p>
+                            <p
+                                className={`mt-2 text-sm leading-relaxed ${model.featured ? 'text-dark/70' : 'text-dark-muted'
+                                    }`}
+                            >
+                                {model.description}
                             </p>
-                            <ul className="space-y-3 mt-auto pt-6 border-t border-border">
-                                {t.points.map((p) => (
-                                    <li key={p} className="flex items-center gap-3 text-sm">
-                                        <Check className="w-4 h-4 text-primary shrink-0" />
-                                        <span>{p}</span>
+
+                            <ul
+                                className={`mt-8 flex flex-1 flex-col gap-4 border-t pt-8 ${model.featured ? 'border-dark/15' : 'border-dark-border'
+                                    }`}
+                            >
+                                {model.items.map((item) => (
+                                    <li key={item} className="flex items-start gap-3 text-sm">
+                                        <Check
+                                            className={`mt-0.5 h-4 w-4 shrink-0 ${model.featured ? 'text-dark' : 'text-dark-foreground'
+                                                }`}
+                                        />
+                                        <span>{item}</span>
                                     </li>
                                 ))}
                             </ul>
+
+                            <a
+                                href="#contact"
+                                className={`mt-10 rounded-full px-5 py-3.5 text-center text-sm font-medium transition-opacity hover:opacity-90 ${model.featured
+                                    ? 'bg-dark text-dark-foreground'
+                                    : 'border border-dark-border text-dark-foreground hover:bg-dark-foreground/5'
+                                    }`}
+                            >
+                                Get in touch
+                            </a>
                         </div>
                     ))}
                 </div>
             </div>
         </section>
-    );
+    )
 }
