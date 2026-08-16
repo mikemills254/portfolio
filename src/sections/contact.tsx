@@ -3,8 +3,8 @@ import { ArrowRight } from 'lucide-react'
 const channels = [
     {
         label: 'Email',
-        value: 'hello@mills.co.ke',
-        href: 'mailto:hello@mills.co.ke',
+        value: 'mike@mills.co.ke',
+        href: 'mailto:mike@mills.co.ke',
     },
     { label: 'LinkedIn', value: '/in/mills', href: 'https://linkedin.com' },
     { label: 'Portfolio', value: 'View case studies', href: '/portfolio' },
@@ -22,7 +22,7 @@ export default function Contact() {
                     <span className="h-px w-8 bg-foreground" />
                 </div>
 
-                <h2 className="mx-auto mt-8 max-w-3xl text-balance text-5xl font-medium leading-[1.0] tracking-tight md:text-7xl">
+                <h2 className="mx-auto mt-8 max-w-3xl text-balance text-5xl font-medium leading-none tracking-tight md:text-7xl">
                     Build something
                     <br />
                     that matters.
