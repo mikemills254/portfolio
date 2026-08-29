@@ -75,7 +75,7 @@ export default function Portfolio() {
     return (
         <>
             <Seo
-                title="Portfolio | Mills — AI & RAG Engineer"
+                title="Portfolio | Mills — AI & RAG Systems Engineering Studio"
                 description="Selected AI, RAG, and backend engineering projects shipped by Mills. Based in Nairobi, Kenya."
                 canonical="https://mills.co.ke/portfolio"
             />

@@ -32,7 +32,7 @@ export default function ContactPage() {
     return (
         <>
             <Seo
-                title="Contact | Mills — AI & RAG Engineer"
+                title="Contact | Mills — AI & RAG Systems Engineering Studio"
                 description="Reach out to discuss your AI, RAG pipeline, or backend engineering requirements. Based in Nairobi, Kenya."
                 canonical="https://mills.co.ke/contact"
             />

@@ -2,10 +2,13 @@ import { ArrowRight } from 'lucide-react'
 import { ParticleSpiral } from '../components/ui/particle-spiral'
 
 const STATS = [
-    { value: '3+', label: 'civic AI products shipped', tag: 'PRODUCTION' },
-    { value: '~50%', label: 'faster builds via shared pipeline', tag: 'RAG' },
-    { value: 'OGP', label: 'recognized budget platform', tag: 'IMPACT' },
-    { value: 'EAT', label: 'Nairobi · East Africa · remote', tag: 'BASED IN' },
+    { value: '100%', label: 'Production uptime & reliability', tag: 'BUILT FOR SCALE' },
+    { value: '~50%', label: 'faster builds via shared pipeline', tag: 'RAG PERFORMANCE' },
+]
+
+const TRUST = [
+    'OGP-recognized budget platform',
+    'Nairobi · East Africa Time · Remote',
 ]
 
 const TECH = [
@@ -77,7 +80,7 @@ export default function Hero() {
                 </div>
 
                 {/* stats row */}
-                <div className="mt-16 grid grid-cols-2 gap-y-8 border-t border-border pt-8 md:grid-cols-4 md:gap-0">
+                <div className="mt-16 grid grid-cols-2 gap-y-8 border-t border-border pt-8 md:gap-0">
                     {STATS.map((stat, i) => (
                         <div
                             key={stat.label}
@@ -90,10 +93,22 @@ export default function Hero() {
                             <span className="mt-1 text-sm text-muted-foreground">
                                 {stat.label}
                             </span>
-                            <span className="mt-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground/70">
+                            <span className="mt-2 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
                                 {stat.tag}
                             </span>
                         </div>
+                    ))}
+                </div>
+
+                {/* trust row: accolades & location, kept out of the numeric stat treatment */}
+                <div className="mt-6 flex flex-wrap gap-3">
+                    {TRUST.map((item) => (
+                        <span
+                            key={item}
+                            className="inline-flex items-center rounded-full border border-border bg-card px-3.5 py-1.5 font-mono text-xs text-muted-foreground"
+                        >
+                            {item}
+                        </span>
                     ))}
                 </div>
 

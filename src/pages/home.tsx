@@ -11,7 +11,7 @@ export default function Home() {
     return (
         <>
             <Seo
-                title="Mills | AI & RAG Engineer — Nairobi, Kenya"
+                title="Mills | AI & RAG Systems Engineering Studio — Nairobi, Kenya"
                 description="AI & RAG engineer based in Nairobi, Kenya, building production Retrieval-Augmented Generation pipelines, LLM integrations, and full-stack systems for teams across East Africa and remote."
                 canonical="https://mills.co.ke/"
             />
