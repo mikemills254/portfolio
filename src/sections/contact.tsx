@@ -1,4 +1,4 @@
-import { ArrowRight, Calendar, Mail } from 'lucide-react'
+import { ArrowRight, Calendar } from 'lucide-react'
 
 const channels = [
     {
