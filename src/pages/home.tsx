@@ -2,6 +2,7 @@ import { Seo } from '../components/seo';
 import Contact from '../sections/contact';
 import Engagement from '../sections/engagement';
 import Expertise from '../sections/expertise';
+import FaqSection from '../sections/faq';
 import Hero from '../sections/hero';
 import Footer from '../components/ui/footer';
 import Navbar from '../components/ui/navbar';
@@ -20,9 +21,10 @@ export default function Home() {
 
                 <div className="grow">
                     <Hero />
-                    <Work/>
+                    <Work />
                     <Expertise />
                     <Engagement />
+                    <FaqSection />
                     <Contact />
                 </div>
 

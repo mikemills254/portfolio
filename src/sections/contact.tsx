@@ -1,19 +1,36 @@
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Calendar, Mail } from 'lucide-react'
 
 const channels = [
     {
-        label: 'Email',
+        label: 'Direct Email',
         value: 'mike@mills.co.ke',
+        caption: 'Response within 24 hours',
         href: 'mailto:mike@mills.co.ke',
     },
-    { label: 'LinkedIn', value: '/in/mills', href: 'https://linkedin.com' },
-    { label: 'Portfolio', value: 'View case studies', href: '/portfolio' },
+    {
+        label: 'Strategy Call',
+        value: 'Book 30-min session',
+        caption: 'Architecture & scoping',
+        href: 'mailto:mike@mills.co.ke?subject=Schedule%2030-min%20AI%20Strategy%20Call',
+    },
+    {
+        label: 'LinkedIn',
+        value: 'Mike Mills',
+        caption: 'Professional network',
+        href: 'https://linkedin.com',
+    },
 ]
 
 export default function Contact() {
     return (
         <section id="contact" className="border-b border-border py-28 md:py-40">
             <div className="mx-auto max-w-4xl px-6 text-center">
+                {/* Availability Badge */}
+                <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 font-mono text-xs text-muted-foreground">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Currently booking for Q4 &amp; 2025 roadmaps</span>
+                </div>
+
                 <div className="flex items-center justify-center gap-3">
                     <span className="h-px w-8 bg-foreground" />
                     <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -36,17 +53,18 @@ export default function Contact() {
 
                 <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
                     <a
-                        href="mailto:hello@mills.co.ke"
+                        href="mailto:mike@mills.co.ke?subject=Schedule%2030-min%20AI%20Strategy%20Call"
                         className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
                     >
-                        Get in touch
+                        <Calendar className="h-4 w-4" />
+                        Book a Strategy Call
                         <ArrowRight className="h-4 w-4" />
                     </a>
                     <a
                         href="#work"
                         className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
                     >
-                        View our work
+                        Explore Selected Work
                     </a>
                 </div>
 
@@ -63,6 +81,9 @@ export default function Contact() {
                             <p className="mt-2 flex items-center gap-1.5 text-base font-medium text-foreground">
                                 {channel.value}
                                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                            </p>
+                            <p className="mt-1 font-mono text-[11px] text-muted-foreground">
+                                {channel.caption}
                             </p>
                         </a>
                     ))}

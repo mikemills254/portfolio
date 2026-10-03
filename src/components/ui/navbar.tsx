@@ -7,6 +7,7 @@ const LINKS = [
     { label: 'Work', id: 'work' },
     { label: 'Expertise', id: 'expertise' },
     { label: 'Services', id: 'services' },
+    { label: 'FAQ', id: 'faq' },
 ]
 
 export default function Navbar() {

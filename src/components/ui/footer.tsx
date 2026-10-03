@@ -46,6 +46,14 @@ export default function Footer() {
                                         Services
                                     </a>
                                 </li>
+                                <li>
+                                    <a
+                                        href="#faq"
+                                        className="text-muted-foreground transition-colors hover:text-foreground"
+                                    >
+                                        FAQ
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <div>

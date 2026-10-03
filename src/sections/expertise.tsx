@@ -2,32 +2,32 @@ const areas = [
     {
         title: 'Retrieval-Augmented Generation',
         description:
-            'Production RAG pipelines end to end — document ingestion, chunking, embedding, vector retrieval, and guardrails — not just a prototype that works in a demo.',
+            "Grounded in your own documents, not the model's imagination — ingestion, chunking, embedding, and vector retrieval, with guardrails around every answer.",
     },
     {
         title: 'Agentic AI & LLM Integration',
         description:
-            'Tool-calling agents, multi-step reasoning, and LLM integrations built for production: reliability, latency, and cost economics, not just capability.',
+            'Agents that know which step to automate and which to leave to a human — tool-calling and multi-step reasoning tuned for latency and cost, not just capability.',
     },
     {
         title: 'Backend & API Development',
         description:
-            'Node.js and TypeScript services, microservices architecture, and authentication systems built to hold up under real traffic.',
+            "Node.js and TypeScript services built to hold up under real traffic, not just a staging environment.",
     },
     {
         title: 'Cloud & Deployment',
         description:
-            'AWS and Azure deployments, Docker, and CI/CD — pragmatic infrastructure that balances performance with operational overhead.',
+            'Pragmatic AWS and Azure infrastructure — Docker, CI/CD — sized to the problem, not the resume.',
     },
     {
         title: 'Full Stack Development',
         description:
-            'Delivering polished, complete products. From robust backend data pipelines to highly crafted frontend interfaces that users trust.',
+            "Complete products end to end: a backend that's solid, and a frontend people actually trust.",
     },
     {
         title: 'Technical Leadership',
         description:
-            "Comfortable owning architecture decisions and mentoring engineers — I've provided technical guidance and oversight to developer trainees in production teams.",
+            "Architecture ownership and mentorship — I've provided technical guidance and oversight to developer trainees in production teams.",
     },
 ]
 
